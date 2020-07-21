@@ -10,7 +10,8 @@ and python implementatio of @eni9889's ppsideloader
 6. Click on "Extract Files", it will setup everything
 7. Enter the App Exec name in the box and click on "Hex edit app"<br>
 
-**AS OF RIGHT NOW THIS FEATURE DOES NOT WORK!!! YOU GET MANUAL INSTRUCTIONS ON HOW TO HEX THE APP EXEC IN THE CONSOLE. LOOKING INTO IMPLEMTING THIS**
+**AS OF RIGHT NOW THIS FEATURE DOES NOT WORK!!! YOU GET MANUAL INSTRUCTIONS ON HOW TO HEX THE APP EXEC IN THE CONSOLE. LOOKING INTO IMPLEMTING THIS**<br>
+
 8. Click on "Creat IPA" and your ipa with the ++ tweak will be made.
 
 # Credits
