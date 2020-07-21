@@ -2,6 +2,12 @@ import os
 import shutil
 import zipfile
 
+print("*** PPSideloader By CrafterPika ***")
+print("*** Twitter: @CrafterPika ***")
+print("*** License: none ***")
+print("*** Source Code: https://github.com/CrafterPika/ppsideloader_py ***")
+print("")
+
 #creating directories
 print("Creating Directories!")
 os.mkdir("App")
