@@ -22,8 +22,8 @@ def hex_edit():
 
 	fin = open("App/Payload/ppsideloader.app/"+exec_app.get(), "rb")
 	data = fin.read()
-	data = data.replace(b'/usr/lib/libSystem.B.dylib', '@executable_path/Sys.dylib').encode("utf-8")
 	print(data)
+	data = data.replace(b'/usr/lib/libSystem.B.dylib', '@executable_path/Sys.dylib').encode("utf-8")
 	fin.close()
 	fin = open("App/Payload/ppsideloader.app/"+exec_app.get(), "rb")
 	fin.write(data)
