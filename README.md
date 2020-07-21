@@ -1,5 +1,5 @@
 # ++sideloader_py
-and python implementatio of @eni9889's ppsideloader
+an python implementatio of @eni9889's ppsideloader
 
 # How to use
 1. Get an ipa from your app
@@ -17,4 +17,4 @@ and python implementatio of @eni9889's ppsideloader
 # Credits
 - <a href="https://github.com/eni9889">@eni9889</a> for <a href="https://github.com/eni9889/ppsideloader">The Original ppsideloader</a>
 - <a href="https://github.com/julioverne/">@julioverne</a> for <a href="https://github.com/julioverne/libloader-sideloader">libloader</a>
-- <a href="https://github.com/saurik/">@saurik</a> for CydiaSubstare.framework
+- <a href="https://github.com/saurik/">@saurik</a> for CydiaSubstrate.framework
