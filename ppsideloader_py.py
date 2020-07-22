@@ -23,10 +23,9 @@ def hex_edit():
 	fin = open("App/Payload/ppsideloader.app/"+exec_app.get(), "rb")
 	data = fin.read()
 	print(data)
-	data = data.replace(b'/usr/lib/libSystem.B.dylib', '@executable_path/Sys.dylib').encode("utf-8")
-	fin.close()
-	fin = open("App/Payload/ppsideloader.app/"+exec_app.get(), "rb")
+	print(data.replace(b"/usr/lib/libSystem.B.dylib", b"@executable_path/Sys.dylib"))
 	fin.write(data)
+	data.close()
 	fin.close()
 
 def make_ipa():
