@@ -7,6 +7,7 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 - [Python v3.8.3](https://www.python.org/downloads/release/python-383/)
 
 # How to use
+
 1. Download [this repo](https://github.com/CrafterPika/ppsideloader_py/archive/master.zip)
 2. Get an (decrypted) ipa from your app
 3. Extract the .ipa and compress the content of "Payload/AppName.app/" (the inside of "AppName.app") to "app.zip"
