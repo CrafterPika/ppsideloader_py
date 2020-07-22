@@ -1,5 +1,5 @@
 # ++sideloader_py
-an python implementatio of @eni9889's ppsideloader<br>
+an python implementation of @eni9889's ppsideloader<br>
 injecting/patching tweaks into apps by loading a library on the main app executable
 
 # Requirements
