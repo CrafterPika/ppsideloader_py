@@ -12,7 +12,7 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 2. Get an (decrypted) ipa from your app
 3. Extract the .ipa and compress the content of "Payload/AppName.app/" (the inside of "AppName.app") to "app.zip"
 4. Get your Tweak <code>.dylib</code> and compress to "Tweak.zip"
-5. Extract the <code>ppsideloader_py-master.zip</a>
+5. Extract the <code>ppsideloader_py-master.zip</code>
 6. Copy both zips into the directory where all <code>.py</code>'s are
 7. Open the "ppsiderloader_py.py"  with python
 8. Click on "Extract Files", it will setup everything
