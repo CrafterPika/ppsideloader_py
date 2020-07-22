@@ -21,6 +21,12 @@ def hex_edit():
 	print("*** Source Code: https://github.com/CrafterPika/ppsideloader_py ***")
 	print("")
 
+	print("Creating Main Executeable Backup.")
+	os.mkdir("tmp")
+	shutil.copy("App/Payload/ppsideloader.app/"+exec_app.get(), "tmp")
+	print("Done.")
+
+	print("Generating HEX Dump (this may take a while).")
 	fin = open("App/Payload/ppsideloader.app/"+exec_app.get(), "rb")
 	fout = open("App/Payload/ppsideloader.app/output_exec", "wb")
 	data = fin.read()
@@ -28,6 +34,7 @@ def hex_edit():
 	fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
 	fin.close()
 	fout.close()
+	print("Done.")
 
 	os.remove("App/Payload/ppsideloader.app/"+exec_app.get())
 	shutil.move("App/Payload/ppsideloader.app/output_exec", "App/Payload/ppsideloader.app/"+exec_app.get())
