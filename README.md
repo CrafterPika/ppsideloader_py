@@ -3,7 +3,7 @@ an python implementation of @eni9889's ppsideloader<br>
 injecting/patching tweaks into apps by loading a library on the main app executable
 
 # Requirements
-- [Python v3.8.2](https://www.python.org/downloads/release/python-382/)
+- [Python v3.8.3](https://www.python.org/downloads/release/python-383/)
 
 # How to use
 1. Get an ipa from your app
