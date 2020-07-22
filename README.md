@@ -14,10 +14,10 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 4. Get your Tweak <code>.dylib</code> and compress to "Tweak.zip"
 5. Extract the <code>ppsideloader_py-master.zip</code>
 6. Copy both zips into the directory where all <code>.py</code>'s are
-7. Open the "ppsiderloader_py.py"  with python
-8. Click on "Extract Files", it will setup everything
-9. Enter the App Exec name in the box and click on "Hex edit app"<br>
-10. Click on "Creat IPA" and your ipa with the ++ tweak will be made.
+7. Open the <code>ppsiderloader_py.py</code>  with python
+8. Click on <code>Extract Files</code>, it will setup everything
+9. Enter the App Exec name in the box and click on <code>Hex edit app</code><br>
+10. Click on <code>Creat IPA</code> and your ipa with the ++ tweak will be made.
 
 # Credits
 - <a href="https://github.com/eni9889">@eni9889</a> for <a href="https://github.com/eni9889/ppsideloader">The Original ppsideloader</a>
