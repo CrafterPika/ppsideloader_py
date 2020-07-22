@@ -1,6 +1,6 @@
 # ++sideloader_py
 an python implementatio of @eni9889's ppsideloadery<br>
-inject tweaks into apps by loading library on main app executable
+injecting/patching tweaks into apps by loading a library on the main app executable
 
 # How to use
 1. Get an ipa from your app
