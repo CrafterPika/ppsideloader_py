@@ -40,7 +40,7 @@ def make_ipa():
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x300")
+main.geometry("500x350")
 
 title = ttk.Label(main, text="PPSideloader")
 title.pack()
@@ -60,6 +60,10 @@ empty3.pack()
 
 Step2 = ttk.Label(main, text="Step 2:")
 Step2.pack()
+empty6 = ttk.Label(main, text="")
+empty6.pack()
+exec_app_name = ttk.Label(main, text="Enter App Exec Name:")
+exec_app_name.pack()
 exec_app = ttk.Entry(main)
 exec_app.pack()
 hex_edit = ttk.Button(main, text="Hex Edit App", command=hex_edit)
