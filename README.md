@@ -3,7 +3,8 @@ an python implementation of @eni9889's ppsideloader<br>
 injecting/patching tweaks into apps by loading a library on the main app executable
 
 # Requirements
-- [Python v3.8.2](https://www.python.org/downloads/release/python-382/)
+
+- [Python v3.8.3](https://www.python.org/downloads/release/python-383/)
 
 # How to use
 1. Get an ipa from your app
@@ -13,9 +14,6 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 5. Open the "ppsiderloader_py.py" with python
 6. Click on "Extract Files", it will setup everything
 7. Enter the App Exec name in the box and click on "Hex edit app"<br>
-
-**AS OF RIGHT NOW THIS FEATURE DOES NOT WORK!!! YOU GET MANUAL INSTRUCTIONS ON HOW TO HEX THE APP EXEC IN THE CONSOLE. LOOKING INTO IMPLEMTING THIS**<br>
-
 8. Click on "Creat IPA" and your ipa with the ++ tweak will be made.
 
 # Credits

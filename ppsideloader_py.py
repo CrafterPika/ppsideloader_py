@@ -1,5 +1,6 @@
 import os
 from tkinter import ttk, Button, Label, Entry, Tk
+import shutil
 
 print("*** PPSideloader By CrafterPika ***")
 print("*** Twitter: @CrafterPika ***")
@@ -19,12 +20,20 @@ def hex_edit():
 	print("*** License: none ***")
 	print("*** Source Code: https://github.com/CrafterPika/ppsideloader_py ***")
 	print("")
-	print("WIP. Not Finished yet. hopefully s0n. ETA WEN?!?!")
-	print("")
-	print("Instrcustion to hex app manually:")
-	print("1. Open '/App/Payload/ppsideloader.app/[NameOfAppYouWanttoTweak]' in a hex editor")
-	print("2. Replace the following String '/usr/lib/libSystem.B.dylib' with '@executable_path/Sys.dylib'")
-	print("3. Save and then press 'Creat IPA' on the UI windows.")
+
+	fin = open("App/Payload/ppsideloader.app/"+exec_app.get(), "rb")
+	fout = open("App/Payload/ppsideloader.app/output_exec", "wb")
+	data = fin.read()
+	print(data)
+	fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
+	fin.close()
+	fout.close()
+
+	os.remove("App/Payload/ppsideloader.app/"+exec_app.get())
+	shutil.move("App/Payload/ppsideloader.app/output_exec", "App/Payload/ppsideloader.app/"+exec_app.get())
+
+	print("Hopefully Replaced '/usr/lib/libSystem.B.dylib' with '@executable_path/Sys.dylib' in"+exec_app.get())
+	print("Note: if it did not work please do replace this string manually in a HEX editor")
 
 def make_ipa():
 	os.system('py -3 ./make_ipa.py')
