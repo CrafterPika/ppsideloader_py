@@ -15,4 +15,4 @@ Tweaks:
   - Compatible with AdGuard (free version) app (https://apps.apple.com/de/app/adguard-adblock-privacy/id1047223162?l=en)
   - Author: CrafterPika
 
-(Keep in mind that are example tweaks you should be able to inject any tweak to an App using this tool)
+(Keep in mind that are example tweaks you should be able to inject any tweak to an App of your wish using this tool, the tweak needs to be compatible with your app tho)
