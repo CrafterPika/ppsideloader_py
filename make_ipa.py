@@ -14,4 +14,5 @@ shutil.make_archive("ppapp", 'zip', "App")
 #re-naming file to.ipa
 os.rename('ppapp.zip', 'ppapp.ipa')
 shutil.rmtree("App")
+shutil.rmtree("tmp")
 print("Done.!")
