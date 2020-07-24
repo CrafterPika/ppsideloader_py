@@ -7,6 +7,10 @@ Tweaks:
   - Compatible with YTMusic app (https://apps.apple.com/de/app/youtube-music/id1017492454?l=en)
   - Author: Julioverne
 
+- Deezelife
+  - Compatible with Deezer app (https://apps.apple.com/de/app/deezer-music-podcast-player/id292738169?l=en)
+  - Author: Julioverne
+
 - Sposify
   - Compatible with Spotify app (https://apps.apple.com/de/app/spotify-new-music-and-podcasts/id324684580?l=en)
   - Author: aesthyrica
