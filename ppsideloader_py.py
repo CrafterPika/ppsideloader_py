@@ -1,6 +1,7 @@
 import os
 from tkinter import ttk, Button, Label, Entry, Tk
 import shutil
+import zipfile
 
 print("*** PPSideloader By CrafterPika ***")
 print("*** Twitter: @CrafterPika ***")
@@ -12,7 +13,41 @@ print("")
 
 #Commands:
 def extract():
-	os.system('py -3 ./extract.py')
+	print("*** PPSideloader By CrafterPika ***")
+	print("*** Twitter: @CrafterPika ***")
+	print("*** License: none ***")
+	print("*** Source Code: https://github.com/CrafterPika/ppsideloader_py ***")
+	print("")
+
+	#creating directories
+	print("Creating Directories!")
+	os.mkdir("App")
+	os.mkdir("App/Payload")
+	os.mkdir("App/Payload/ppsideloader.app")
+	os.mkdir("App/Payload/ppsideloader.app/Frameworks")
+	os.mkdir("App/Payload/ppsideloader.app/libloader")
+	print("Done!")
+
+	#Extracting Files
+	print("Extracting Importand Files!")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
+
+	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ppsideloader.app/")
+	print("Done!")
+
+	#moving Tweak
+	print("Extracting Tweak!")
+	with zipfile.ZipFile("Tweak.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ppsideloader.app/libloader")
+	print("Done!")
+
+	#app
+	print("Extracting App Zip.")
+	with zipfile.ZipFile("app.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ppsideloader.app/")
+	print("Done!")
 
 def hex_edit():
 	print("*** PPSideloader By CrafterPika ***")
@@ -43,8 +78,23 @@ def hex_edit():
 	print("Note: if it did not work please do replace this string manually in a HEX editor")
 
 def make_ipa():
-	os.system('py -3 ./make_ipa.py')
+	print("*** PPSideloader By CrafterPika ***")
+	print("*** Twitter: @CrafterPika ***")
+	print("*** License: none ***")
+	print("*** Source Code: https://github.com/CrafterPika/ppsideloader_py ***")
+	print("")
 
+	print("Creating New ipa")
+	# Creating Zip Archive
+	shutil.make_archive("ppapp", 'zip', "App")
+
+	#re-naming file to.ipa
+	os.rename('ppapp.zip', 'ppapp.ipa')
+	shutil.rmtree("App")
+	shutil.rmtree("tmp")
+	print("Done.!")
+
+# UI
 main = Tk()
 main.title("ppsideloader")
 main.geometry("500x350")
