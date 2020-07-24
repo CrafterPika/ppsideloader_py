@@ -8,7 +8,7 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 
 # How to use
 
-1. Download [this repo](https://github.com/CrafterPika/ppsideloader_py/archive/master.zip)
+1. MacOS or Windows user download the pre-compiled binrary from [here](https://github.com/CrafterPika/ppsideloader_py/releases) (linux user [download this repo](https://github.com/CrafterPika/ppsideloader_py/archive/master.zip))
 2. Get an (decrypted) ipa from your app
 3. Extract the .ipa and compress the content of <code>Payload/AppName.app/</code> (the inside of <code>AppName.app</code>) to <code>app.zip</code>
 4. Get your Tweak <code>.dylib</code> and compress to <code>Tweak.zip</code>
