@@ -98,6 +98,7 @@ def make_ipa():
 main = Tk()
 main.title("ppsideloader")
 main.geometry("500x350")
+main.iconbitmap('icon.ico')
 
 title = ttk.Label(main, text="PPSideloader")
 title.pack()
