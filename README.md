@@ -4,7 +4,7 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 
 # Requirements
 
-- [Python v3.8.3](https://www.python.org/downloads/release/python-383/)
+- [Python v3.8.3](https://www.python.org/downloads/release/python-383/) (only required if you want to run it from the source code you simply can use the [pre-compiled binary's from the release page](https://github.com/CrafterPika/ppsideloader_py/releases) without python)
 
 # How to use
 
