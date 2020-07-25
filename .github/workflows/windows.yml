@@ -28,7 +28,7 @@ jobs:
         pip install pyinstaller
     - name: Build
       run: |
-        pyinstaller --onefile -i icon.icon ppsideloader_py.py 
+        pyinstaller --onefile -i icon.ico ppsideloader_py.py 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
