@@ -1,5 +1,5 @@
 import os
-from tkinter import ttk, Button, Label, Entry, Tk
+from tkinter import ttk, Button, Label, Entry, Tk, Menu
 import shutil
 import zipfile
 
@@ -94,6 +94,12 @@ def make_ipa():
 	shutil.rmtree("tmp")
 	print("Done.!")
 
+def exctract_framework():
+	print("Extracting Framework(s)")
+	with zipfile.ZipFile("Framework.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
+	print("Done!")
+
 # UI
 main = Tk()
 main.title("ppsideloader")
@@ -139,5 +145,11 @@ empty5 = ttk.Label(main, text="")
 empty5.pack()
 title = ttk.Label(main, text="Follow me on Twitter: @CrafterPika")
 title.pack()
+
+toolmenu=Menu()
+utils=Menu()
+utils.add_command(label='Extract External Framework(s)', command=exctract_framework)
+toolmenu.add_cascade(label='Utils',menu=utils)
+main.config(menu=toolmenu)
 
 main.mainloop()
