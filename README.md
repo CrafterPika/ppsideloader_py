@@ -5,7 +5,7 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 # Requirements
 
 - [Python v3.8.3](https://www.python.org/downloads/release/python-383/) (only if you want to run it from the source code)
-- [Theos-Jailed compile .dylibs](https://github.com/kabiroberai/theos-jailed/wiki/Installation) <b>yes the .dylibs need to be compiled with theos-jailed</b>
+- [Theos-Jailed](https://github.com/kabiroberai/theos-jailed/wiki/Installation) <b>YOU WILL REQUIRE AN THEOS-JAILED TWEAK ELSE IT WON'T WORK IN THE JAILED STATE</b>
 
 # How to use
 

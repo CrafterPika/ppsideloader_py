@@ -2,6 +2,17 @@ import os
 from tkinter import ttk, Button, Label, Entry, Tk, Menu
 import shutil
 import zipfile
+import wget
+import urllib.request
+import requests
+import json
+
+#json:
+url = 'https://raw.githubusercontent.com/CrafterPika/ppsideloader_py/files/index.json'
+req = urllib.request.Request(url)
+r = urllib.request.urlopen(req).read()
+cont = json.loads(r.decode('utf-8'))
+counter = 0
 
 print("*** PPSideloader By CrafterPika ***")
 print("*** Twitter: @CrafterPika ***")
@@ -100,6 +111,74 @@ def exctract_framework():
 		zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 	print("Done!")
 
+#AppCake++
+def make_appcake_pp():
+	print("Creating AppCake++")
+	#downloading Files
+	print("Downloading ipa")
+	wget.download(cont["appcake"], f'./appcake.zip')
+	print("\nDone!")
+	print("Downloading AppCake++!")
+	wget.download(cont["appcake_pp"], f'./appcakepp.zip')
+	print("\nDone!")
+
+	#Extracting Files
+	os.mkdir("App")
+
+	print("Extracting AppCake Zip.")
+	with zipfile.ZipFile("appcake.zip", 'r') as zip_ref:
+		zip_ref.extractall("App")
+	print("Done!")
+
+	print("Extracting Importand Files!")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/appcakej.app/Frameworks")
+
+	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/appcakej.app/")
+	print("Done!")
+
+	os.mkdir("App/Payload/appcakej.app/libloader")
+	with zipfile.ZipFile("appcakepp.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/appcakej.app/libloader")
+	print("Done!")
+
+	#hex edit appcake
+	print("Creating Main Executeable Backup.")
+	os.mkdir("tmp")
+	shutil.copy("App/Payload/appcakej.app/appcakej", "tmp")
+	print("Done.")
+
+	print("Generating HEX Dump (this may take a while).")
+	fin = open("App/Payload/appcakej.app/appcakej", "rb")
+	fout = open("App/Payload/appcakej.app/output_exec", "wb")
+	data = fin.read()
+	print(data)
+	fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
+	fin.close()
+	fout.close()
+	print("Done.")
+
+	os.remove("App/Payload/appcakej.app/appcakej")
+	shutil.move("App/Payload/appcakej.app/output_exec", "App/Payload/appcakej.app/appcakej")
+
+	# Creating Zip Archive
+	print("Creating New ipa")
+	shutil.make_archive("appcake++", 'zip', "App")
+
+	#re-naming file to.ipa
+	os.rename('appcake++.zip', 'appcake++.ipa')
+	shutil.rmtree("App")
+	shutil.rmtree("tmp")
+	os.remove("appcakepp.zip")
+	os.remove("appcake.zip")
+	print("Done.!")
+
+
+
+
+
+
 # UI
 main = Tk()
 main.title("ppsideloader")
@@ -147,8 +226,11 @@ title = ttk.Label(main, text="Follow me on Twitter: @CrafterPika")
 title.pack()
 
 toolmenu=Menu()
+tweaks=Menu()
+tweaks.add_command(label='Creat AppCake++', command=make_appcake_pp)
 utils=Menu()
 utils.add_command(label='Extract External Framework(s)', command=exctract_framework)
+toolmenu.add_cascade(label='Tweaks',menu=tweaks)
 toolmenu.add_cascade(label='Utils',menu=utils)
 main.config(menu=toolmenu)
 
