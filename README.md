@@ -7,6 +7,11 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 - [Python v3.8.3](https://www.python.org/downloads/release/python-383/) (only if you want to run it from the source code)
 - [Theos-Jailed compiled .dylibs](https://github.com/kabiroberai/theos-jailed/wiki/Installation)
 
+# out-of-the-box apps
+it supports to build apps out of the box:
+- AppCake++
+- Spotify++
+
 # How to use
 
 1. MacOS or Windows user download the pre-compiled binrary from [here](https://github.com/CrafterPika/ppsideloader_py/releases)
@@ -25,6 +30,9 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 * `?` iOS Port (maybe)
 * `+` Feature: Restore main app exec backup
 * `?` Feature (MacOS Only): Sign apps on enterprise certs (maybe)
+
+# Screenshot
+<img src="./screenshot.png">
 
 # Credits
 - <a href="https://github.com/eni9889">@eni9889</a> for <a href="https://github.com/eni9889/ppsideloader">The Original ppsideloader</a>
