@@ -12,7 +12,7 @@ it supports to build apps out of the box:
 - AppCake++
 - Spotify++
 
-# How to use (Custim App)
+# How to use (Custom App)
 
 1. MacOS or Windows user download the pre-compiled binrary from [here](https://github.com/CrafterPika/ppsideloader_py/releases)
 2. Get an (decrypted) ipa from your app
