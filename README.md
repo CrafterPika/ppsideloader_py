@@ -12,12 +12,12 @@ it supports to build apps out of the box:
 - AppCake++
 - Spotify++
 
-# How to use
+# How to use (Custim App)
 
 1. MacOS or Windows user download the pre-compiled binrary from [here](https://github.com/CrafterPika/ppsideloader_py/releases)
 2. Get an (decrypted) ipa from your app
 3. Extract the .ipa and compress the content of <code>Payload/AppName.app/</code> (the content of <code>AppName.app</code> not the .app folder itself) to <code>app.zip</code>
-4. Get your Tweak <code>.dylib</code> and compress to <code>Tweak.zip</code>
+4. Get your Tweak <code>.dylib</code> <b>(needs to be compiled with theos-jailed)</b> and compress to <code>Tweak.zip</code>
 5. Extract the ppsideloader_py <code>.zip</code>
 6. Copy both zips into the directory where the program is
 7. Open the ppsiderloader_py prgram  with
