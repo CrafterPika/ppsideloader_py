@@ -33,10 +33,10 @@ it supports to build apps out of the box:
 
 # Screenshot
 <p>Light Mode:</p>
-<img src="./screenhots/1.png">
+<img src="./screenshots/1.png">
 <br>
 <p>Dark Mode:</p>
-<img src="./screenhots/2.png">
+<img src="./screenshots/2.png">
 
 # Credits
 - <a href="https://github.com/eni9889">@eni9889</a> for <a href="https://github.com/eni9889/ppsideloader">The Original ppsideloader</a>
