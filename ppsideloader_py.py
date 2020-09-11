@@ -1,5 +1,7 @@
 import os
 from tkinter import ttk, Button, Label, Entry, Tk, Menu
+import tkinter
+from tkinter.ttk import *
 import shutil
 import zipfile
 import wget
@@ -238,55 +240,166 @@ def make_Spotify_pp():
 	os.remove("libSpotilife.zip")
 	print("Done.!")
 
+def restore_app_exec_backup():
+
+	def restore_backup2():
+		print("Restoring Backup")
+		os.remove("App/Payload/ppsideloader.app/"+exec_app2.get())
+		shutil.copy("tmp/"+exec_app2.get(), "App/Payload/ppsideloader.app/"+exec_app2.get())
+		print("Done!")
+
+
+	def darkmode():
+		restore.config(bg="#000000")
+		title.config(background="#000000", foreground="#ffffff")
+		empty.config(background="#000000", foreground="#ffffff")
+		name.config(background="#000000", foreground="#ffffff")
+		dark2.config(text="White Mode", command=whitemode)
+
+	def whitemode():
+		restore.config(bg="#ffffff")
+		title.config(background="#ffffff", foreground="#000000")
+		empty.config(background="#ffffff", foreground="#000000")
+		name.config(background="#ffffff", foreground="#000000")
+		dark2.config(text="Dark Mode", command=darkmode)
+
+	restore = Tk()
+	restore.title("Restore App Executeable")
+	restore.config(bg="#ffffff")
+	restore.geometry("370x150")
+	restore.iconbitmap('icon.ico')
+	title = Label(restore, text="Restore App Executeable")
+	title.config(background="#ffffff", foreground="#000000")
+	title.pack()
+	#Dark/White Mode
+	dark2 = ttk.Button(restore, text="Dark Mode", command=darkmode)
+	dark2.pack()
+	empty = Label(restore, text="")
+	empty.config(background="#ffffff", foreground="#000000")
+	empty.pack()
+	name = Label(restore, text="App Exec Name")
+	name.config(background="#ffffff", foreground="#000000")
+	name.pack()
+	exec_app2 = ttk.Entry(restore)
+	exec_app2.pack()
+	restore_backup = ttk.Button(restore, text="Restore Backup", command=restore_backup2)
+	restore_backup.pack()
+
+	restore.mainloop()
+
+
+def dark_mode():
+	main.config(bg="#000000")
+	dark.config(text="White Mode", command=white_mode)
+	title.config(background="#000000", foreground="#ffffff")
+	empty.config(background="#000000", foreground="#ffffff")
+	empty2.config(background="#000000", foreground="#ffffff")
+	Step1.config(background="#000000", foreground="#ffffff")
+	empty3.config(background="#000000", foreground="#ffffff")
+	Step2.config(background="#000000", foreground="#ffffff")
+	empty6.config(background="#000000", foreground="#ffffff")
+	empty4.config(background="#000000", foreground="#ffffff")
+	Step3.config(background="#000000", foreground="#ffffff")
+	empty5.config(background="#000000", foreground="#ffffff")
+	title2.config(background="#000000", foreground="#ffffff")
+	exec_app_name.config(background="#000000", foreground="#ffffff")
+
+def white_mode():
+	main.config(bg="#ffffff")
+	dark.config(text="Dark Mode", command=dark_mode)
+	title.config(background="#ffffff", foreground="#000000")
+	empty.config(background="#ffffff", foreground="#000000")
+	empty2.config(background="#ffffff", foreground="#000000")
+	Step1.config(background="#ffffff", foreground="#000000")
+	empty3.config(background="#ffffff", foreground="#000000")
+	Step2.config(background="#ffffff", foreground="#000000")
+	empty6.config(background="#ffffff", foreground="#000000")
+	empty4.config(background="#ffffff", foreground="#000000")
+	Step3.config(background="#ffffff", foreground="#000000")
+	empty5.config(background="#ffffff", foreground="#000000")
+	title2.config(background="#ffffff", foreground="#000000")
+	exec_app_name.config(background="#ffffff", foreground="#000000")
 
 
 
 
 # UI
+#Global
+global title
+global empty
+global empty2
+global Step1
+global empty3
+global Step2
+global empty6
+global empty4
+global Step3
+global empty5
+global title2
+global exec_app_name
+global dark
+global restore
+
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x350")
+main.config(bg="#ffffff")
+main.geometry("500x375")
 main.iconbitmap('icon.ico')
 
-title = ttk.Label(main, text="PPSideloader")
+title = Label(main, text="PPSideloader")
+title.config(background="#ffffff", foreground="#000000")
 title.pack()
+#Dark/White Mode
+dark = ttk.Button(main, text="Dark Mode", command=dark_mode)
+dark.pack()
 
-empty = ttk.Label(main, text="")
+empty = Label(main, text="")
+empty.config(background="#ffffff", foreground="#000000")
 empty.pack()
-empty2 = ttk.Label(main, text="")
+empty2 = Label(main, text="")
+empty2.config(background="#ffffff", foreground="#000000")
 empty2.pack()
 
-Step1 = ttk.Label(main, text="Step 1:")
+Step1 = Label(main, text="Step 1:")
+Step1.config(background="#ffffff", foreground="#000000")
 Step1.pack()
 extract = ttk.Button(main, text="Extract Files", command=extract)
 extract.pack()
 
-empty3 = ttk.Label(main, text="")
+empty3 = Label(main, text="")
+empty3.config(background="#ffffff", foreground="#000000")
 empty3.pack()
 
-Step2 = ttk.Label(main, text="Step 2:")
+Step2 = Label(main, text="Step 2:")
+Step2.config(background="#ffffff", foreground="#000000")
 Step2.pack()
-empty6 = ttk.Label(main, text="")
+empty6 = Label(main, text="")
+empty6.config(background="#ffffff", foreground="#000000")
 empty6.pack()
-exec_app_name = ttk.Label(main, text="Enter App Exec Name:")
+exec_app_name = Label(main, text="Enter App Exec Name:")
+exec_app_name.config(background="#ffffff", foreground="#000000")
 exec_app_name.pack()
 exec_app = ttk.Entry(main)
 exec_app.pack()
 hex_edit = ttk.Button(main, text="Hex Edit App", command=hex_edit)
 hex_edit.pack()
 
-empty4 = ttk.Label(main, text="")
+empty4 = Label(main, text="")
+empty4.config(background="#ffffff", foreground="#000000")
 empty4.pack()
 
-Step3 = ttk.Label(main, text="Step 3:")
+Step3 = Label(main, text="Step 3:")
+Step3.config(background="#ffffff", foreground="#000000")
 Step3.pack()
 make_ipa = ttk.Button(main, text="Creat IPA", command=make_ipa)
 make_ipa.pack()
 
-empty5 = ttk.Label(main, text="")
+empty5 = Label(main, text="")
+empty5.config(background="#ffffff", foreground="#000000")
 empty5.pack()
-title = ttk.Label(main, text="Follow me on Twitter: @CrafterPika")
-title.pack()
+title2 = Label(main, text="Follow me on Twitter: @CrafterPika")
+title2.config(background="#ffffff", foreground="#000000")
+title2.pack()
 
 toolmenu=Menu()
 tweaks=Menu()
@@ -294,6 +407,7 @@ tweaks.add_command(label='Creat AppCake++', command=make_appcake_pp)
 tweaks.add_command(label='Creat Spotify++', command=make_Spotify_pp)
 utils=Menu()
 utils.add_command(label='Extract External Framework(s)', command=exctract_framework)
+utils.add_command(label='Restore App Executable', command=restore_app_exec_backup)
 toolmenu.add_cascade(label='Tweaks',menu=tweaks)
 toolmenu.add_cascade(label='Utils',menu=utils)
 main.config(menu=toolmenu)
