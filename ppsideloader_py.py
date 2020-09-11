@@ -8,6 +8,7 @@ import wget
 import urllib.request
 import requests
 import json
+import webbrowser
 
 #json:
 url = 'https://raw.githubusercontent.com/CrafterPika/ppsideloader_py/files/index.json'
@@ -25,6 +26,10 @@ print("Loading UI...")
 print("")
 
 #Commands:
+def source_code():
+	url = 'https://github.com/CrafterPika/ppsideloader_py'
+	webbrowser.open_new(url)
+
 def extract():
 	print("*** PPSideloader By CrafterPika ***")
 	print("*** Twitter: @CrafterPika ***")
@@ -410,6 +415,7 @@ utils.add_command(label='Extract External Framework(s)', command=exctract_framew
 utils.add_command(label='Restore App Executable', command=restore_app_exec_backup)
 toolmenu.add_cascade(label='Tweaks',menu=tweaks)
 toolmenu.add_cascade(label='Utils',menu=utils)
+toolmenu.add_command(label='Source Code', command=source_code)
 main.config(menu=toolmenu)
 
 main.mainloop()
