@@ -11,6 +11,7 @@ injecting/patching tweaks into apps by loading a library on the main app executa
 it supports to build apps out of the box:
 - AppCake++
 - Spotify++
+- Spotify++ (w. Sposify)
 
 # How to use (Custom App)
 
