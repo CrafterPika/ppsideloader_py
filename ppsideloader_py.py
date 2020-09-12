@@ -245,6 +245,77 @@ def make_Spotify_pp():
 	os.remove("libSpotilife.zip")
 	print("Done.!")
 
+#Spotify++ (w. Sposify)
+def make_Spotify_w_spotilife_sposify():
+	print("Creating Spotify++")
+	#downloading Files
+	print("Downloading ipa")
+	wget.download(cont["spotify"], f'./spotify.zip')
+	print("\nDone!")
+	print("Downloading libSpotilife!")
+	wget.download(cont["libSpotilife"], f'./libSpotilife.zip')
+	print("\nDone!")
+	print("Downloading libSposify!")
+	wget.download(cont["libSposify"], f'./libSposify.zip')
+	print("\nDone!")
+
+	#Extracting Files
+	os.mkdir("App")
+
+	print("Extracting Content.")
+	with zipfile.ZipFile("spotify.zip", 'r') as zip_ref:
+		zip_ref.extractall("App")
+
+	os.mkdir("App/Payload/Spotify.app/Frameworks")
+
+	print("Extracting Importand Files!")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/Spotify.app/Frameworks")
+
+	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/Spotify.app/")
+
+	os.mkdir("App/Payload/Spotify.app/libloader")
+
+	with zipfile.ZipFile("libSpotilife.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/Spotify.app/libloader")
+
+	with zipfile.ZipFile("libSposify.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/Spotify.app/libloader")
+	print("Done!")
+
+	#hex edit appcake
+	print("Creating Main Executeable Backup.")
+	os.mkdir("tmp")
+	shutil.copy("App/Payload/Spotify.app/Spotify", "tmp")
+	print("Done.")
+
+	print("Generating HEX Dump (this may take a while).")
+	fin = open("App/Payload/Spotify.app/Spotify", "rb")
+	fout = open("App/Payload/Spotify.app/output_exec", "wb")
+	data = fin.read()
+	print(data)
+	fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
+	fin.close()
+	fout.close()
+	print("Done.")
+
+	os.remove("App/Payload/Spotify.app/Spotify")
+	shutil.move("App/Payload/Spotify.app/output_exec", "App/Payload/Spotify.app/Spotify")
+
+	# Creating Zip Archive
+	print("Creating New ipa")
+	shutil.make_archive("Spotify_w.Spotilife_Sposify", 'zip', "App")
+
+	#re-naming file to.ipa
+	os.rename('Spotify_w.Spotilife_Sposify.zip', 'Spotify_w.Spotilife_Sposify.ipa')
+	shutil.rmtree("App")
+	shutil.rmtree("tmp")
+	os.remove("spotify.zip")
+	os.remove("libSpotilife.zip")
+	os.remove("libSposify.zip")
+	print("Done.!")
+
 def restore_app_exec_backup():
 
 	def restore_backup2():
@@ -410,6 +481,7 @@ toolmenu=Menu()
 tweaks=Menu()
 tweaks.add_command(label='Creat AppCake++', command=make_appcake_pp)
 tweaks.add_command(label='Creat Spotify++', command=make_Spotify_pp)
+tweaks.add_command(label='Creat Spotify++ (w. Sposify)', command=make_Spotify_w_spotilife_sposify)
 utils=Menu()
 utils.add_command(label='Extract External Framework(s)', command=exctract_framework)
 utils.add_command(label='Restore App Executable', command=restore_app_exec_backup)
