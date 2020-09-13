@@ -132,18 +132,15 @@ def make_appcake_pp():
 	#Extracting Files
 	os.mkdir("App")
 
-	print("Extracting AppCake Zip.")
+	print("Extracting content.")
 	with zipfile.ZipFile("appcake.zip", 'r') as zip_ref:
 		zip_ref.extractall("App")
-	print("Done!")
 
-	print("Extracting Importand Files!")
 	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/appcakej.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/appcakej.app/")
-	print("Done!")
 
 	os.mkdir("App/Payload/appcakej.app/libloader")
 	with zipfile.ZipFile("appcakepp.zip", 'r') as zip_ref:
@@ -195,10 +192,9 @@ def make_Spotify_pp():
 	#Extracting Files
 	os.mkdir("App")
 
-	print("Extracting Spotifys Zip.")
+	print("Extracting Content.")
 	with zipfile.ZipFile("spotify.zip", 'r') as zip_ref:
 		zip_ref.extractall("App")
-	print("Done!")
 
 	os.mkdir("App/Payload/Spotify.app/Frameworks")
 	print("Extracting Importand Files!")
@@ -207,7 +203,6 @@ def make_Spotify_pp():
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/Spotify.app/")
-	print("Done!")
 
 	os.mkdir("App/Payload/Spotify.app/libloader")
 	with zipfile.ZipFile("libSpotilife.zip", 'r') as zip_ref:
@@ -305,10 +300,10 @@ def make_Spotify_w_spotilife_sposify():
 
 	# Creating Zip Archive
 	print("Creating New ipa")
-	shutil.make_archive("Spotify_w.Spotilife_Sposify", 'zip', "App")
+	shutil.make_archive("Spotify++_w.Sposify", 'zip', "App")
 
 	#re-naming file to.ipa
-	os.rename('Spotify_w.Spotilife_Sposify.zip', 'Spotify_w.Spotilife_Sposify.ipa')
+	os.rename('Spotify++_w.Sposify.zip', 'Spotify++_w.Sposify.ipa')
 	shutil.rmtree("App")
 	shutil.rmtree("tmp")
 	os.remove("spotify.zip")
@@ -479,9 +474,9 @@ title2.pack()
 
 toolmenu=Menu()
 tweaks=Menu()
-tweaks.add_command(label='Creat AppCake++', command=make_appcake_pp)
-tweaks.add_command(label='Creat Spotify++', command=make_Spotify_pp)
-tweaks.add_command(label='Creat Spotify++ (w. Sposify)', command=make_Spotify_w_spotilife_sposify)
+tweaks.add_command(label='AppCake++', command=make_appcake_pp)
+tweaks.add_command(label='Spotify++', command=make_Spotify_pp)
+tweaks.add_command(label='Spotify++ (w. Sposify)', command=make_Spotify_w_spotilife_sposify)
 utils=Menu()
 utils.add_command(label='Extract External Framework(s)', command=exctract_framework)
 utils.add_command(label='Restore App Executable', command=restore_app_exec_backup)
