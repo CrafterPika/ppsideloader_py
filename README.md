@@ -30,7 +30,7 @@ it supports to build apps out of the box:
 * `+` Linux port (Why? for some reason i cannot use the tkinter library so..)
 * `?` iOS Port (maybe)
 * `✓` Feature: Restore main app exec backup
-* `?` Feature (MacOS Only): Sign apps on enterprise certs (maybe)
+* `✗` Feature (MacOS Only): Sign apps on enterprise certs (maybe)
 
 # Screenshot
 <p>Light Mode:</p>
