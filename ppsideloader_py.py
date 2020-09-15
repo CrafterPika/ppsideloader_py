@@ -8,7 +8,12 @@ import wget
 import urllib.request
 import requests
 import json
+import ssl
 import webbrowser
+
+#other
+ssl._create_default_https_context = ssl._create_unverified_context
+
 
 #json:
 url = 'https://raw.githubusercontent.com/CrafterPika/ppsideloader_py/files/index.json'
