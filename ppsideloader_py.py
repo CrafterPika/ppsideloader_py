@@ -1,5 +1,5 @@
 import os
-from tkinter import ttk, Button, Label, Entry, Tk, Menu
+from tkinter import ttk, Button, Label, Entry, Tk, Menu, filedialog, messagebox
 import tkinter
 from tkinter.ttk import *
 import shutil
@@ -96,6 +96,8 @@ def hex_edit():
 	print("Note: if it did not work please do replace this string manually in a HEX editor")
 
 def make_ipa():
+	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+	folder_selected = filedialog.askdirectory()
 	print("*** PPSideloader By CrafterPika ***")
 	print("*** Twitter: @CrafterPika ***")
 	print("*** License: none ***")
@@ -110,6 +112,7 @@ def make_ipa():
 	os.rename('ppapp.zip', 'ppapp.ipa')
 	shutil.rmtree("App")
 	shutil.rmtree("tmp")
+	shutil.move("ppapp.ipa", folder_selected)
 	print("Done.!")
 
 def exctract_framework():
@@ -120,6 +123,8 @@ def exctract_framework():
 
 #AppCake++
 def make_appcake_pp():
+	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+	folder_selected = filedialog.askdirectory()
 	print("Creating AppCake++")
 	#downloading Files
 	print("Downloading ipa")
@@ -176,10 +181,13 @@ def make_appcake_pp():
 	shutil.rmtree("tmp")
 	os.remove("appcakepp.zip")
 	os.remove("appcake.zip")
+	shutil.move("appcake++.ipa", folder_selected)
 	print("Done.!")
 
 #Spotify++
 def make_Spotify_pp():
+	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+	folder_selected = filedialog.askdirectory()
 	print("Creating Spotify++")
 	#downloading Files
 	print("Downloading ipa")
@@ -238,10 +246,13 @@ def make_Spotify_pp():
 	shutil.rmtree("tmp")
 	os.remove("spotify.zip")
 	os.remove("libSpotilife.zip")
+	shutil.move("Spotify++.ipa", folder_selected)
 	print("Done.!")
 
 #Spotify++ (w. Sposify)
 def make_Spotify_w_spotilife_sposify():
+	messagebox.showinfo("info", "Please provide a directory where you want to save the IPA!")
+	folder_selected = filedialog.askdirectory()
 	print("Creating Spotify++")
 	#downloading Files
 	print("Downloading ipa")
@@ -309,6 +320,7 @@ def make_Spotify_w_spotilife_sposify():
 	os.remove("spotify.zip")
 	os.remove("libSpotilife.zip")
 	os.remove("libSposify.zip")
+	shutil.move("Spotify++_w.Sposify.ipa", folder_selected)
 	print("Done.!")
 
 def restore_app_exec_backup():
