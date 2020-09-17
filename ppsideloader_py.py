@@ -146,6 +146,11 @@ def make_appcake_pp():
 	with zipfile.ZipFile("appcake.zip", 'r') as zip_ref:
 		zip_ref.extractall("App")
 
+	try:
+		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
+	except:
+		pass
+
 	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/appcakej.app/Frameworks")
 
@@ -209,7 +214,10 @@ def make_Spotify_pp():
 	with zipfile.ZipFile("spotify.zip", 'r') as zip_ref:
 		zip_ref.extractall("App")
 
-	os.mkdir("App/Payload/Spotify.app/Frameworks")
+	try:
+		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
+	except:
+		pass
 	print("Extracting Importand Files!")
 	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/Spotify.app/Frameworks")
@@ -277,7 +285,10 @@ def make_Spotify_w_spotilife_sposify():
 	with zipfile.ZipFile("spotify.zip", 'r') as zip_ref:
 		zip_ref.extractall("App")
 
-	os.mkdir("App/Payload/Spotify.app/Frameworks")
+	try:
+		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
+	except:
+		pass
 
 	print("Extracting Importand Files!")
 	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
@@ -348,7 +359,10 @@ def make_zipapplite_pp():
 	with zipfile.ZipFile("ZipAppLite.zip", 'r') as zip_ref:
 		zip_ref.extractall("App")
 
-	os.mkdir("App/Payload/Spotify.app/Frameworks")
+	try:
+		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
+	except:
+		pass
 	print("Extracting Importand Files!")
 	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/ZipAppLite.app/Frameworks")

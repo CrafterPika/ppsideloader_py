@@ -12,6 +12,7 @@ it supports to build apps out of the box:
 - AppCake++
 - Spotify++
 - Spotify++ (w. Sposify)
+- ZipAppLite++
 
 # How to use (Custom App)
 
