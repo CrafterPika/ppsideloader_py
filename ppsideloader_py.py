@@ -328,6 +328,71 @@ def make_Spotify_w_spotilife_sposify():
 	shutil.move("Spotify++_w.Sposify.ipa", folder_selected)
 	print("Done.!")
 
+#ZipAppLite++
+def make_zipapplite_pp():
+	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+	folder_selected = filedialog.askdirectory()
+	print("Creating ZipAppLite++")
+	#downloading Files
+	print("Downloading ipa")
+	wget.download(cont["ZipAppLite"], f'./ZipAppLite.zip')
+	print("\nDone!")
+	print("Downloading libZipAppLite!")
+	wget.download(cont["ZipAppLite_pp"], f'./libZipAppLite.zip')
+	print("\nDone!")
+
+	#Extracting Files
+	os.mkdir("App")
+
+	print("Extracting Content.")
+	with zipfile.ZipFile("ZipAppLite.zip", 'r') as zip_ref:
+		zip_ref.extractall("App")
+
+	os.mkdir("App/Payload/Spotify.app/Frameworks")
+	print("Extracting Importand Files!")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ZipAppLite.app/Frameworks")
+
+	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ZipAppLite.app/")
+
+	os.mkdir("App/Payload/ZipAppLite.app/libloader")
+	with zipfile.ZipFile("libZipAppLite.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ZipAppLite.app/libloader")
+	print("Done!")
+
+	#hex edit appcake
+	print("Creating Main Executeable Backup.")
+	os.mkdir("tmp")
+	shutil.copy("App/Payload/ZipAppLite.app/ZipAppLite", "tmp")
+	print("Done.")
+
+	print("Generating HEX Dump (this may take a while).")
+	fin = open("App/Payload/ZipAppLite.app/ZipAppLite", "rb")
+	fout = open("App/Payload/ZipAppLite.app/output_exec", "wb")
+	data = fin.read()
+	print(data)
+	fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
+	fin.close()
+	fout.close()
+	print("Done.")
+
+	os.remove("App/Payload/ZipAppLite.app/ZipAppLite")
+	shutil.move("App/Payload/ZipAppLite.app/output_exec", "App/Payload/ZipAppLite.app/ZipAppLite")
+
+	# Creating Zip Archive
+	print("Creating New ipa")
+	shutil.make_archive("ZipAppLite++", 'zip', "App")
+
+	#re-naming file to.ipa
+	os.rename('ZipAppLite++.zip', 'ZipAppLite++.ipa')
+	shutil.rmtree("App")
+	shutil.rmtree("tmp")
+	os.remove("ZipAppLite.zip")
+	os.remove("libZipAppLite.zip")
+	shutil.move("ZipAppLite++.ipa", folder_selected)
+	print("Done.!")
+
 def restore_app_exec_backup():
 
 	def restore_backup2():
@@ -494,6 +559,7 @@ tweaks=Menu()
 tweaks.add_command(label='AppCake++', command=make_appcake_pp)
 tweaks.add_command(label='Spotify++', command=make_Spotify_pp)
 tweaks.add_command(label='Spotify++ (w. Sposify)', command=make_Spotify_w_spotilife_sposify)
+tweaks.add_command(label='ZipAppLite++', command=make_zipapplite_pp)
 utils=Menu()
 utils.add_command(label='Extract External Framework(s)', command=exctract_framework)
 utils.add_command(label='Restore App Executable', command=restore_app_exec_backup)
