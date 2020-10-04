@@ -1,5 +1,6 @@
 import os
 from tkinter import ttk, Button, Label, Entry, Tk, Menu, filedialog, messagebox
+from tkinter import *
 import tkinter
 from tkinter.ttk import *
 import shutil
@@ -53,8 +54,11 @@ def extract():
 
 	#Extracting Files
 	print("Extracting Importand Files!")
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
+	if(var.get()==1):
+		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
+	else:
+		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/ppsideloader.app/")
@@ -151,8 +155,11 @@ def AppCake():
 	except:
 		pass
 
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/appcakej.app/Frameworks")
+	if(var.get()==1):
+		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
+	else:
+		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/appcakej.app/")
@@ -222,9 +229,11 @@ def Spotify():
 	except:
 		pass
 
-	print("Extracting Importand Files!")
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/Spotify.app/Frameworks")
+	if(var.get()==1):
+		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
+	else:
+		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/Spotify.app/")
@@ -295,9 +304,12 @@ def ZipAppLite():
 		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
 	except:
 		pass
-	print("Extracting Importand Files!")
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/ZipAppLite.app/Frameworks")
+
+	if(var.get()==1):
+		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
+	else:
+		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/ZipAppLite.app/")
@@ -347,37 +359,16 @@ def restore_app_exec_backup():
 		shutil.copy("tmp/"+exec_app2.get(), "App/Payload/ppsideloader.app/"+exec_app2.get())
 		print("Done!")
 
-
-	def darkmode():
-		restore.config(bg="#000000")
-		title.config(background="#000000", foreground="#ffffff")
-		empty.config(background="#000000", foreground="#ffffff")
-		name.config(background="#000000", foreground="#ffffff")
-		dark2.config(text="White Mode", command=whitemode)
-
-	def whitemode():
-		restore.config(bg="#ffffff")
-		title.config(background="#ffffff", foreground="#000000")
-		empty.config(background="#ffffff", foreground="#000000")
-		name.config(background="#ffffff", foreground="#000000")
-		dark2.config(text="Dark Mode", command=darkmode)
-
 	restore = Tk()
 	restore.title("Restore App Executeable")
-	restore.config(bg="#ffffff")
 	restore.geometry("370x150")
 	restore.iconbitmap('icon.ico')
 	title = Label(restore, text="Restore App Executeable")
-	title.config(background="#ffffff", foreground="#000000")
 	title.pack()
-	#Dark/White Mode
-	dark2 = ttk.Button(restore, text="Dark Mode", command=darkmode)
-	dark2.pack()
+
 	empty = Label(restore, text="")
-	empty.config(background="#ffffff", foreground="#000000")
 	empty.pack()
 	name = Label(restore, text="App Exec Name")
-	name.config(background="#ffffff", foreground="#000000")
 	name.pack()
 	exec_app2 = ttk.Entry(restore)
 	exec_app2.pack()
@@ -387,96 +378,36 @@ def restore_app_exec_backup():
 	restore.mainloop()
 
 
-def dark_mode():
-	main.config(bg="#000000")
-	dark.config(text="White Mode", command=white_mode)
-	title.config(background="#000000", foreground="#ffffff")
-	empty.config(background="#000000", foreground="#ffffff")
-	empty2.config(background="#000000", foreground="#ffffff")
-	Step1.config(background="#000000", foreground="#ffffff")
-	empty3.config(background="#000000", foreground="#ffffff")
-	Step2.config(background="#000000", foreground="#ffffff")
-	empty6.config(background="#000000", foreground="#ffffff")
-	empty4.config(background="#000000", foreground="#ffffff")
-	Step3.config(background="#000000", foreground="#ffffff")
-	empty5.config(background="#000000", foreground="#ffffff")
-	title2.config(background="#000000", foreground="#ffffff")
-	exec_app_name.config(background="#000000", foreground="#ffffff")
-
-def white_mode():
-	main.config(bg="#ffffff")
-	dark.config(text="Dark Mode", command=dark_mode)
-	title.config(background="#ffffff", foreground="#000000")
-	empty.config(background="#ffffff", foreground="#000000")
-	empty2.config(background="#ffffff", foreground="#000000")
-	Step1.config(background="#ffffff", foreground="#000000")
-	empty3.config(background="#ffffff", foreground="#000000")
-	Step2.config(background="#ffffff", foreground="#000000")
-	empty6.config(background="#ffffff", foreground="#000000")
-	empty4.config(background="#ffffff", foreground="#000000")
-	Step3.config(background="#ffffff", foreground="#000000")
-	empty5.config(background="#ffffff", foreground="#000000")
-	title2.config(background="#ffffff", foreground="#000000")
-	exec_app_name.config(background="#ffffff", foreground="#000000")
-
-
-
-
-# UI
-#Global
-global title
-global empty
-global empty2
-global Step1
-global empty3
-global Step2
-global empty6
-global empty4
-global Step3
-global empty5
-global title2
-global exec_app_name
-global dark
-global restore
-
 main = Tk()
 main.title("ppsideloader")
-main.config(bg="#ffffff")
 main.geometry("500x375")
 main.iconbitmap('icon.ico')
 
 title = Label(main, text="PPSideloader")
-title.config(background="#ffffff", foreground="#000000")
 title.pack()
-#Dark/White Mode
-dark = ttk.Button(main, text="Dark Mode", command=dark_mode)
-dark.pack()
+
+var = tkinter.IntVar()
+libsubstrate = ttk.Checkbutton(main, text="Use libsubstrate.dylib.", variable=var, onvalue=1, offvalue=0)
+libsubstrate.pack()
 
 empty = Label(main, text="")
-empty.config(background="#ffffff", foreground="#000000")
 empty.pack()
 empty2 = Label(main, text="")
-empty2.config(background="#ffffff", foreground="#000000")
 empty2.pack()
 
 Step1 = Label(main, text="Step 1:")
-Step1.config(background="#ffffff", foreground="#000000")
 Step1.pack()
 extract = ttk.Button(main, text="Extract Files", command=extract)
 extract.pack()
 
 empty3 = Label(main, text="")
-empty3.config(background="#ffffff", foreground="#000000")
 empty3.pack()
 
 Step2 = Label(main, text="Step 2:")
-Step2.config(background="#ffffff", foreground="#000000")
 Step2.pack()
 empty6 = Label(main, text="")
-empty6.config(background="#ffffff", foreground="#000000")
 empty6.pack()
 exec_app_name = Label(main, text="Enter App Exec Name:")
-exec_app_name.config(background="#ffffff", foreground="#000000")
 exec_app_name.pack()
 exec_app = ttk.Entry(main)
 exec_app.pack()
@@ -484,20 +415,16 @@ hex_edit = ttk.Button(main, text="Hex Edit App", command=hex_edit)
 hex_edit.pack()
 
 empty4 = Label(main, text="")
-empty4.config(background="#ffffff", foreground="#000000")
 empty4.pack()
 
 Step3 = Label(main, text="Step 3:")
-Step3.config(background="#ffffff", foreground="#000000")
 Step3.pack()
 make_ipa = ttk.Button(main, text="Creat IPA", command=make_ipa)
 make_ipa.pack()
 
 empty5 = Label(main, text="")
-empty5.config(background="#ffffff", foreground="#000000")
 empty5.pack()
 title2 = Label(main, text="Follow me on Twitter: @CrafterPika")
-title2.config(background="#ffffff", foreground="#000000")
 title2.pack()
 
 toolmenu=Menu()
