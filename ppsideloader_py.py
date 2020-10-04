@@ -11,6 +11,8 @@ import requests
 import json
 import ssl
 import webbrowser
+import tkinter as tk
+import tkinter.ttk as ttk
 
 #other
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -49,7 +51,10 @@ def extract():
 	os.mkdir("App/Payload")
 	os.mkdir("App/Payload/ppsideloader.app")
 	os.mkdir("App/Payload/ppsideloader.app/Frameworks")
-	os.mkdir("App/Payload/ppsideloader.app/libloader")
+	if(var2.get()==1):
+		pass
+	else:
+		os.mkdir("App/Payload/ppsideloader.app/libloader")
 	print("Done!")
 
 	#Extracting Files
@@ -60,14 +65,20 @@ def extract():
 		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
 			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 
-	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/ppsideloader.app/")
+	if(var2.get()==1):
+		pass
+	else:
+		with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
+			zip_ref.extractall("App/Payload/ppsideloader.app/")
 	print("Done!")
 
 	#moving Tweak
 	print("Extracting Tweak!")
-	with zipfile.ZipFile("Tweak.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/ppsideloader.app/libloader")
+	if(var2.get()==1):
+		shutil.copy("Sys.dylib", "App/Payload/ppsideloader.app")
+	else:
+		with zipfile.ZipFile("Tweak.zip", 'r') as zip_ref:
+			zip_ref.extractall("App/Payload/ppsideloader.app/libloader")
 	print("Done!")
 
 	#app
@@ -121,7 +132,10 @@ def make_ipa():
 	os.rename('ppapp.zip', 'ppapp.ipa')
 	shutil.rmtree("App")
 	shutil.rmtree("tmp")
-	shutil.move("ppapp.ipa", folder_selected)
+	try:
+		shutil.move("ppapp.ipa", folder_selected)
+	except:
+		pass
 	print("Done.!")
 
 def exctract_framework():
@@ -374,22 +388,34 @@ def warn():
 	else:
 		print("libsubstrate is disabled.")
 
+def warn2():
+	if(var2.get()==1):
+		messagebox.showinfo("info.", "Disabling libloader will remove the abillity of installing multiple tweaks. And you need to place your tweak as 'Sys.dylib' in the root folder")
+	else:
+		print("libloader has been enabled.")
+
+
 
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x375")
+main.geometry("500x405")
 main.iconbitmap('icon.ico')
 
 title = Label(main, text="PPSideloader")
 title.pack()
 
+settings_frame = ttk.LabelFrame(main, text="Settings")
+settings_frame.pack()
+
 var = tkinter.IntVar()
-libsubstrate = ttk.Checkbutton(main, text="Use libsubstrate.dylib.", variable=var, onvalue=1, offvalue=0, command=warn)
+libsubstrate = ttk.Checkbutton(settings_frame, text="Use libsubstrate lib.", variable=var, onvalue=1, offvalue=0, command=warn)
 libsubstrate.pack()
 
-empty = Label(main, text="")
-empty.pack()
+var2 = tkinter.IntVar()
+libloader = ttk.Checkbutton(settings_frame, text="Don't use libloader.", variable=var2, onvalue=1, offvalue=0, command=warn2)
+libloader.pack()
+
 empty2 = Label(main, text="")
 empty2.pack()
 
