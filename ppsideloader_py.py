@@ -151,15 +151,12 @@ def AppCake():
 		zip_ref.extractall("App")
 
 	try:
-		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
+		os.mkdir("App/Payload/appcakej.app/Frameworks")
 	except:
 		pass
 
-	if(var.get()==1):
-		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
-	else:
-		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/appcakej.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/appcakej.app/")
@@ -225,15 +222,12 @@ def Spotify():
 		zip_ref.extractall("App")
 
 	try:
-		os.mkdir("App/Payload/ZipAppLite.app/Frameworks")
+		os.mkdir("App/Payload/Spotify.app/Frameworks")
 	except:
 		pass
 
-	if(var.get()==1):
-		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
-	else:
-		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/Spotify.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/Spotify.app/")
@@ -305,11 +299,8 @@ def ZipAppLite():
 	except:
 		pass
 
-	if(var.get()==1):
-		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
-	else:
-		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
-			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
+	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		zip_ref.extractall("App/Payload/ZipAppLite.app/Frameworks")
 
 	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/ZipAppLite.app/")
@@ -377,6 +368,13 @@ def restore_app_exec_backup():
 
 	restore.mainloop()
 
+def warn():
+	if(var.get()==1):
+		messagebox.showinfo("WARNING!!!!", "libsubstrate.dylib is really old. And some tweaks may not load with it. This is not consired as it's a old method. This option is only leftover for tweaks that are incompatible with 'CydiaSubstrate.framework'")
+	else:
+		print("libsubstrate is disabled.")
+
+
 
 main = Tk()
 main.title("ppsideloader")
@@ -387,7 +385,7 @@ title = Label(main, text="PPSideloader")
 title.pack()
 
 var = tkinter.IntVar()
-libsubstrate = ttk.Checkbutton(main, text="Use libsubstrate.dylib.", variable=var, onvalue=1, offvalue=0)
+libsubstrate = ttk.Checkbutton(main, text="Use libsubstrate.dylib.", variable=var, onvalue=1, offvalue=0, command=warn)
 libsubstrate.pack()
 
 empty = Label(main, text="")
