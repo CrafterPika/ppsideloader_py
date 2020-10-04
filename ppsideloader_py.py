@@ -13,6 +13,8 @@ import ssl
 import webbrowser
 import tkinter as tk
 import tkinter.ttk as ttk
+import plistlib
+import re
 
 #other
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -86,6 +88,24 @@ def extract():
 	with zipfile.ZipFile("app.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/ppsideloader.app/")
 	print("Done!")
+
+	if(var3.get()==1):
+		print("Changing App Name")
+		with open("App/Payload/ppsideloader.app/Info.plist", 'rb') as fp:
+			pl = plistlib.load(fp)
+		data = pl["CFBundleDisplayName"]
+		f = open("App/Payload/ppsideloader.app/Info.plist")
+		data2 = f.read()
+		replace = re.sub(f"\n\t<key>CFBundleDisplayName</key>\n\t<string>{data}</string>\n\t", f"\n\t<key>CFBundleDisplayName</key>\n\t<string>{data} ++</string>\n\t", data2)
+		f = open("App/Payload/ppsideloader.app/Info2.plist", "a")
+		print(replace, file=f)
+		f.close()
+
+		os.remove("App/Payload/ppsideloader.app/Info.plist")
+		shutil.move("App/Payload/ppsideloader.app/Info2.plist", "App/Payload/ppsideloader.app/Info.plist")
+		print("Done!")
+	else:
+		pass
 
 def hex_edit():
 	print("*** PPSideloader By CrafterPika ***")
@@ -394,6 +414,12 @@ def warn2():
 	else:
 		print("libloader has been enabled.")
 
+def warn3():
+	if(var3.get()==1):
+		messagebox.showinfo("info.", "Enabling this option will add a ++ to appname. Some apps may detect that the app has been modifired due to this change.")
+	else:
+		print("++ name has been disabled.")
+
 
 
 
@@ -415,6 +441,11 @@ libsubstrate.pack()
 var2 = tkinter.IntVar()
 libloader = ttk.Checkbutton(settings_frame, text="Don't use libloader.", variable=var2, onvalue=1, offvalue=0, command=warn2)
 libloader.pack()
+
+var3 = tkinter.IntVar()
+pp_name = ttk.Checkbutton(settings_frame, text="Add ++ to App Name", variable=var3, onvalue=1, offvalue=0, command=warn3)
+pp_name.pack()
+
 
 empty2 = Label(main, text="")
 empty2.pack()
