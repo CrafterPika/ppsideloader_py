@@ -21,11 +21,15 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 #json:
-url = 'https://raw.githubusercontent.com/CrafterPika/ppsideloader_py/files/index.json'
-req = urllib.request.Request(url)
-r = urllib.request.urlopen(req).read()
-cont = json.loads(r.decode('utf-8'))
-counter = 0
+try:
+	url = 'https://raw.githubusercontent.com/CrafterPika/ppsideloader_py/files/index.json'
+	req = urllib.request.Request(url)
+	r = urllib.request.urlopen(req).read()
+	cont = json.loads(r.decode('utf-8'))
+	counter = 0
+except:
+	print("No Internet connection detected loading offline mode.")
+	pass
 
 print("*** PPSideloader By CrafterPika ***")
 print("*** Twitter: @CrafterPika ***")
@@ -49,7 +53,11 @@ def extract():
 
 	#creating directories
 	print("Creating Directories!")
-	os.mkdir("App")
+	try:
+		os.mkdir("App")
+	except:
+		shutil.rmtree("App")
+		os.mkdir("App")
 	os.mkdir("App/Payload")
 	os.mkdir("App/Payload/ppsideloader.app")
 	os.mkdir("App/Payload/ppsideloader.app/Frameworks")
@@ -115,7 +123,11 @@ def hex_edit():
 	print("")
 
 	print("Creating Main Executeable Backup.")
-	os.mkdir("tmp")
+	try:
+		os.mkdir("tmp")
+	except:
+		shutil.rmtree("tmp")
+		os.mkdir("tmp")
 	shutil.copy("App/Payload/ppsideloader.app/"+exec_app.get(), "tmp")
 	print("Done.")
 
@@ -178,7 +190,11 @@ def AppCake():
 	print("\nDone!")
 
 	#Extracting Files
-	os.mkdir("App")
+	try:
+		os.mkdir("App")
+	except:
+		shutil.rmtree("App")
+		os.mkdir("App")
 
 	print("Extracting content.")
 	with zipfile.ZipFile("appcake.zip", 'r') as zip_ref:
@@ -202,7 +218,11 @@ def AppCake():
 
 	#hex edit appcake
 	print("Creating Main Executeable Backup.")
-	os.mkdir("tmp")
+	try:
+		os.mkdir("tmp")
+	except:
+		shutil.rmtree("tmp")
+		os.mkdir("tmp")
 	shutil.copy("App/Payload/appcakej.app/appcakej", "tmp")
 	print("Done.")
 
@@ -249,7 +269,11 @@ def Spotify():
 	print("\nDone!")
 
 	#Extracting Files
-	os.mkdir("App")
+	try:
+		os.mkdir("App")
+	except:
+		shutil.rmtree("App")
+		os.mkdir("App")
 
 	print("Extracting Content.")
 	with zipfile.ZipFile("spotify.zip", 'r') as zip_ref:
@@ -277,7 +301,11 @@ def Spotify():
 
 	#hex edit appcake
 	print("Creating Main Executeable Backup.")
-	os.mkdir("tmp")
+	try:
+		os.mkdir("tmp")
+	except:
+		shutil.rmtree("tmp")
+		os.mkdir("tmp")
 	shutil.copy("App/Payload/Spotify.app/Spotify", "tmp")
 	print("Done.")
 
@@ -322,7 +350,11 @@ def ZipAppLite():
 	print("\nDone!")
 
 	#Extracting Files
-	os.mkdir("App")
+	try:
+		os.mkdir("App")
+	except:
+		shutil.rmtree("App")
+		os.mkdir("App")
 
 	print("Extracting Content.")
 	with zipfile.ZipFile("ZipAppLite.zip", 'r') as zip_ref:
@@ -346,7 +378,11 @@ def ZipAppLite():
 
 	#hex edit appcake
 	print("Creating Main Executeable Backup.")
-	os.mkdir("tmp")
+	try:
+		os.mkdir("tmp")
+	except:
+		shutil.rmtree("tmp")
+		os.mkdir("tmp")
 	shutil.copy("App/Payload/ZipAppLite.app/ZipAppLite", "tmp")
 	print("Done.")
 
