@@ -33,11 +33,7 @@ it supports to build apps out of the box:
 * `✗` Feature (MacOS Only): Sign apps on enterprise certs (maybe)
 
 # Screenshot
-<p>Light Mode:</p>
 <img src="./screenshots/1.png">
-<br>
-<p>Dark Mode:</p>
-<img src="./screenshots/2.png">
 
 # Credits
 - <a href="https://github.com/eni9889">@eni9889</a> for <a href="https://github.com/eni9889/ppsideloader">The Original ppsideloader</a>
