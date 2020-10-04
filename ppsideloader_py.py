@@ -461,7 +461,7 @@ def warn3():
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x405")
+main.geometry("500x407")
 main.iconbitmap('icon.ico')
 
 title = Label(main, text="PPSideloader")
