@@ -440,19 +440,19 @@ def restore_app_exec_backup():
 
 def warn():
 	if(var.get()==1):
-		messagebox.showinfo("WARNING!!!!", "libsubstrate.dylib is really old. And some tweaks may not load with it. This is not consired as it's a old method. This option is only leftover for tweaks that are incompatible with 'CydiaSubstrate.framework'")
+		messagebox.showinfo("Use libsubstrate lib", "libsubstrate is the old method of loading tweaks and it isn't recommend to use anymore\n\nProblems: Some tweaks may not load with it as these are incompatible.\n\nCompabillity: Old tweaks that are not compatible with 'CydiaSubstrate.framework'")
 	else:
 		print("libsubstrate is disabled.")
 
 def warn2():
 	if(var2.get()==1):
-		messagebox.showinfo("info.", "Disabling libloader will remove the abillity of installing multiple tweaks. And you need to place your tweak as 'Sys.dylib' in the root folder")
+		messagebox.showinfo("Don't use libloader.", "Enabling this option will disable the use of libloader-sideloader. This will remove the abillity to load mutiple tweaks at once. You also need to place a 'Sys.dylib' in the root folder")
 	else:
 		print("libloader has been enabled.")
 
 def warn3():
 	if(var3.get()==1):
-		messagebox.showinfo("info.", "Enabling this option will add a ++ to appname. Some apps may detect that the app has been modifired due to this change.")
+		messagebox.showinfo("Add ++ to App Name.", "Enabling this option will attempt to add a '++' to the appname\n\nProblems: Some apps may detect that you modified the app due to that change.\n\nCompanillty: All Apps.")
 	else:
 		print("++ name has been disabled.")
 
