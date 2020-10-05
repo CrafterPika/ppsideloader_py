@@ -148,8 +148,11 @@ def hex_edit():
 	print("Note: if it did not work please do replace this string manually in a HEX editor")
 
 def make_ipa():
-	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
-	folder_selected = filedialog.askdirectory()
+	if(var4.get()==1):
+		pass
+	else:
+		messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+		folder_selected = filedialog.askdirectory()
 	print("*** PPSideloader By CrafterPika ***")
 	print("*** Twitter: @CrafterPika ***")
 	print("*** License: none ***")
@@ -164,10 +167,10 @@ def make_ipa():
 	os.rename('ppapp.zip', 'ppapp.ipa')
 	shutil.rmtree("App")
 	shutil.rmtree("tmp")
-	try:
-		shutil.move("ppapp.ipa", folder_selected)
-	except:
+	if(var4.get()==1):
 		pass
+	else:
+		shutil.move("ppapp.ipa", folder_selected)
 	print("Done.!")
 
 def exctract_framework():
@@ -178,8 +181,11 @@ def exctract_framework():
 
 #AppCake++
 def AppCake():
-	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
-	folder_selected = filedialog.askdirectory()
+	if(var4.get()==1):
+		pass
+	else:
+		messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+		folder_selected = filedialog.askdirectory()
 	print("Creating AppCake++")
 	#downloading Files
 	print("Downloading ipa")
@@ -249,13 +255,19 @@ def AppCake():
 	shutil.rmtree("tmp")
 	os.remove("appcakepp.zip")
 	os.remove("appcake.zip")
-	shutil.move("appcake++.ipa", folder_selected)
+	if(var4.get()==1):
+		pass
+	else:
+		shutil.move("ppapp.ipa", folder_selected)
 	print("Done.!")
 
 #Spotify++ (w. Sposify)
 def Spotify():
-	messagebox.showinfo("info", "Please provide a directory where you want to save the IPA!")
-	folder_selected = filedialog.askdirectory()
+	if(var4.get()==1):
+		pass
+	else:
+		messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+		folder_selected = filedialog.askdirectory()
 	print("Creating Spotify++")
 	#downloading Files
 	print("Downloading ipa")
@@ -333,13 +345,19 @@ def Spotify():
 	os.remove("spotify.zip")
 	os.remove("libSpotilife.zip")
 	os.remove("libSposify.zip")
-	shutil.move("Spotify++_w.Sposify.ipa", folder_selected)
+	if(var4.get()==1):
+		pass
+	else:
+		shutil.move("ppapp.ipa", folder_selected)
 	print("Done.!")
 
 #ZipAppLite++
 def ZipAppLite():
-	messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
-	folder_selected = filedialog.askdirectory()
+	if(var4.get()==1):
+		pass
+	else:
+		messagebox.showinfo("Info", "Please provide a directory where you want to save the IPA!")
+		folder_selected = filedialog.askdirectory()
 	print("Creating ZipAppLite++")
 	#downloading Files
 	print("Downloading ipa")
@@ -409,7 +427,10 @@ def ZipAppLite():
 	shutil.rmtree("tmp")
 	os.remove("ZipAppLite.zip")
 	os.remove("libZipAppLite.zip")
-	shutil.move("ZipAppLite++.ipa", folder_selected)
+	if(var4.get()==1):
+		pass
+	else:
+		shutil.move("ppapp.ipa", folder_selected)
 	print("Done.!")
 
 def restore_app_exec_backup():
@@ -461,7 +482,7 @@ def warn3():
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x410")
+main.geometry("500x430")
 main.iconbitmap('icon.ico')
 
 title = Label(main, text="PPSideloader")
@@ -471,16 +492,21 @@ settings_frame = ttk.LabelFrame(main, text="Settings")
 settings_frame.pack()
 
 var = tkinter.IntVar()
-libsubstrate = ttk.Checkbutton(settings_frame, text="Use libsubstrate lib.", variable=var, onvalue=1, offvalue=0, command=warn)
+libsubstrate = ttk.Checkbutton(settings_frame, text="Use libsubstrate lib.                    ", variable=var, onvalue=1, offvalue=0, command=warn)
 libsubstrate.pack()
 
 var2 = tkinter.IntVar()
-libloader = ttk.Checkbutton(settings_frame, text="Don't use libloader.", variable=var2, onvalue=1, offvalue=0, command=warn2)
+libloader = ttk.Checkbutton(settings_frame, text="Don't use libloader.                    ", variable=var2, onvalue=1, offvalue=0, command=warn2)
 libloader.pack()
 
 var3 = tkinter.IntVar()
-pp_name = ttk.Checkbutton(settings_frame, text="Add ++ to App Name", variable=var3, onvalue=1, offvalue=0, command=warn3)
+pp_name = ttk.Checkbutton(settings_frame, text="Add ++ to App Name                ", variable=var3, onvalue=1, offvalue=0, command=warn3)
 pp_name.pack()
+
+var4 = tkinter.IntVar()
+file_location = ttk.Checkbutton(settings_frame, text="Don't ask for file save location. ", variable=var4, onvalue=1, offvalue=0)
+file_location.pack()
+
 
 
 empty2 = Label(main, text="")
