@@ -440,7 +440,7 @@ def restore_app_exec_backup():
 
 def warn():
 	if(var.get()==1):
-		messagebox.showinfo("Use libsubstrate lib", "libsubstrate is the old method of loading tweaks and it isn't recommend to use anymore\n\nProblems: Some tweaks may not load with it as these are incompatible.\n\nCompabillity: Old tweaks that are not compatible with 'CydiaSubstrate.framework'")
+		messagebox.showinfo("Use libsubstrate lib", "libsubstrate is the old method of loading tweaks and it isn't recommend to use anymore\n\nProblems: Some tweaks may not load with it as these are incompatible.\nCompabillity: Old tweaks that are not compatible with 'CydiaSubstrate.framework'")
 	else:
 		print("libsubstrate is disabled.")
 
@@ -452,7 +452,7 @@ def warn2():
 
 def warn3():
 	if(var3.get()==1):
-		messagebox.showinfo("Add ++ to App Name.", "Enabling this option will attempt to add a '++' to the appname\n\nProblems: Some apps may detect that you modified the app due to that change.\n\nCompanillty: All Apps.")
+		messagebox.showinfo("Add ++ to App Name.", "Enabling this option will attempt to add a '++' to the appname\n\nProblems: Some apps may detect that you modified the app due to that change.\nCompanillty: Apps that don't determine that modified the app via this patch.")
 	else:
 		print("++ name has been disabled.")
 
