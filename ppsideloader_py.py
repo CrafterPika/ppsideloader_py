@@ -70,16 +70,15 @@ def extract():
 	#Extracting Files
 	print("Extracting Importand Files!")
 	if(var.get()==1):
-		shutil.copy("deps/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
+		shutil.copy("deps/libs/libsubstrate.dylib", "App/Payload/ppsideloader.app/Frameworks")
 	else:
-		with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+		with zipfile.ZipFile("deps/frameworks/CydiaSubstrate.zip", 'r') as zip_ref:
 			zip_ref.extractall("App/Payload/ppsideloader.app/Frameworks")
 
 	if(var2.get()==1):
 		pass
 	else:
-		with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
-			zip_ref.extractall("App/Payload/ppsideloader.app/")
+		shutil.copy("deps/libs/libloader.dylib", "App/Payload/ppsideloader.app/Sys.dylib")
 	print("Done!")
 
 	#moving Tweak
@@ -218,11 +217,10 @@ def AppCake():
 	except:
 		pass
 
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+	with zipfile.ZipFile("deps/frameworks/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/appcakej.app/Frameworks")
 
-	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/appcakej.app/")
+	shutil.copy("deps/libs/libloader.dylib", "App/Payload/appcakej.app/Sys.dylib")
 
 	os.mkdir("App/Payload/appcakej.app/libloader")
 	with zipfile.ZipFile("appcakepp.zip", 'r') as zip_ref:
@@ -303,11 +301,10 @@ def Spotify():
 	except:
 		pass
 
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+	with zipfile.ZipFile("deps/frameworks/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/Spotify.app/Frameworks")
 
-	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/Spotify.app/")
+	shutil.copy("deps/libs/libloader.dylib", "App/Payload/Spotify.app/Sys.dylib")
 
 	os.mkdir("App/Payload/Spotify.app/libloader")
 
@@ -390,11 +387,10 @@ def ZipAppLite():
 	except:
 		pass
 
-	with zipfile.ZipFile("deps/CydiaSubstrate.zip", 'r') as zip_ref:
+	with zipfile.ZipFile("deps/frameworks/CydiaSubstrate.zip", 'r') as zip_ref:
 		zip_ref.extractall("App/Payload/ZipAppLite.app/Frameworks")
 
-	with zipfile.ZipFile("deps/libloader.zip", 'r') as zip_ref:
-		zip_ref.extractall("App/Payload/ZipAppLite.app/")
+	shutil.copy("deps/libs/libloader.dylib", "App/Payload/ZipAppLite.app/Sys.dylib")
 
 	os.mkdir("App/Payload/ZipAppLite.app/libloader")
 	with zipfile.ZipFile("libZipAppLite.zip", 'r') as zip_ref:
