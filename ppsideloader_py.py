@@ -114,6 +114,16 @@ def extract():
 	else:
 		pass
 
+	if(var5.get()==1):
+		print("Adding DLG")
+		try:
+			shutil.copy("deps/addons/dlgmemor.dylib", "App/Payload/ppsideloader.app/libloader")
+		except:
+			messagebox.showinfo("Error", "The folder 'libloader' doesn't seems to exist. Are you sure you unchecked 'Don't use libloader'?")
+		print("Done")
+	else:
+		pass
+
 def hex_edit():
 	print("*** PPSideloader By CrafterPika ***")
 	print("*** Twitter: @CrafterPika ***")
@@ -480,12 +490,18 @@ def warn3():
 	else:
 		print("++ name has been disabled.")
 
+def warn4():
+	if(var5.get()==1):
+		messagebox.showinfo("Add DLGMemor Injected.", "Enabling this option will add the DLG Cheat engine. Using this option requires libloader\n\nRequirements: libloader\nCompanillty: ~90% of offline games\nProblems: Games which check server side will DLG not work.")
+	else:
+		print("Add DLGMemor Injected has been disabled.")
+
 
 
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x430")
+main.geometry("500x450")
 main.iconbitmap('icon.ico')
 
 title = Label(main, text="PPSideloader")
@@ -504,6 +520,10 @@ libloader.pack()
 
 var3 = tkinter.IntVar()
 pp_name = ttk.Checkbutton(settings_frame, text="Add ++ to App Name.               ", variable=var3, onvalue=1, offvalue=0, command=warn3)
+pp_name.pack()
+
+var5 = tkinter.IntVar()
+pp_name = ttk.Checkbutton(settings_frame, text="Add DLGMemor Injected.          ", variable=var5, onvalue=1, offvalue=0, command=warn4)
 pp_name.pack()
 
 var4 = tkinter.IntVar()
