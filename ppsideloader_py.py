@@ -81,6 +81,7 @@ def extract():
 		shutil.copy("deps/libs/libloader.dylib", "App/Payload/ppsideloader.app/Sys.dylib")
 	print("Done!")
 
+
 	#moving Tweak
 	print("Extracting Tweak!")
 	if(var2.get()==1):
@@ -123,6 +124,17 @@ def extract():
 		print("Done")
 	else:
 		pass
+
+	if(var6.get()==1):
+		print("Adding FLEX")
+		try:
+			shutil.copy("deps/addons/FLEX_Jailed.dylib", "App/Payload/ppsideloader.app/libloader")
+		except:
+			messagebox.showinfo("Error", "The folder 'libloader' doesn't seems to exist. Are you sure you unchecked 'Don't use libloader'?")
+		print("Done")
+	else:
+		pass
+
 
 def hex_edit():
 	print("*** PPSideloader By CrafterPika ***")
@@ -496,20 +508,31 @@ def warn4():
 	else:
 		print("Add DLGMemor Injected has been disabled.")
 
+def warn5():
+	if(var6.get()==1):
+		messagebox.showinfo("Add FLEX.", "Enabling this option will add the FLEX. Using this option requires libloader\n\nRequirements: libloader\nCompanillty: All Apps")
+	else:
+		print("Add FLEX has been disabled.")
+
 
 
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("500x450")
+main.geometry("500x490")
 main.iconbitmap('icon.ico')
 
 title = Label(main, text="PPSideloader")
 title.pack()
 
+# frames
 settings_frame = ttk.LabelFrame(main, text="Settings")
 settings_frame.pack()
 
+addons_frame = ttk.LabelFrame(main, text="Addons")
+addons_frame.pack()
+
+#settings
 var = tkinter.IntVar()
 libsubstrate = ttk.Checkbutton(settings_frame, text="Use libsubstrate lib.                    ", variable=var, onvalue=1, offvalue=0, command=warn)
 libsubstrate.pack()
@@ -522,13 +545,18 @@ var3 = tkinter.IntVar()
 pp_name = ttk.Checkbutton(settings_frame, text="Add ++ to App Name.               ", variable=var3, onvalue=1, offvalue=0, command=warn3)
 pp_name.pack()
 
-var5 = tkinter.IntVar()
-pp_name = ttk.Checkbutton(settings_frame, text="Add DLGMemor Injected.          ", variable=var5, onvalue=1, offvalue=0, command=warn4)
-pp_name.pack()
-
 var4 = tkinter.IntVar()
 file_location = ttk.Checkbutton(settings_frame, text="Don't ask for file save location. ", variable=var4, onvalue=1, offvalue=0)
 file_location.pack()
+
+#addons
+var5 = tkinter.IntVar()
+dlgmemor = ttk.Checkbutton(addons_frame, text="Add DLGMemor Injected.          ", variable=var5, onvalue=1, offvalue=0, command=warn4)
+dlgmemor.pack()
+
+var6 = tkinter.IntVar()
+FLEX = ttk.Checkbutton(addons_frame, text="Add FLEX.                                     ", variable=var6, onvalue=1, offvalue=0, command=warn5)
+FLEX.pack()
 
 
 
