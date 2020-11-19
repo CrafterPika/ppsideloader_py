@@ -5,9 +5,9 @@ name: Windows_Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ v2.0 ]
   pull_request:
-    branches: [ master ]
+    branches: [ v2.0 ]
 
 jobs:
   build:

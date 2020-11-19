@@ -5,9 +5,9 @@ name: MacOS_Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ v2.0 ]
   pull_request:
-    branches: [ master ]
+    branches: [ v2.0 ]
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install pyinstaller
-        pip install -r requirements.txt 
+        pip install -r requirements.txt
     - name: Build
       run: |
         pyinstaller --onefile -i icon.icon ppsideloader_py.py
