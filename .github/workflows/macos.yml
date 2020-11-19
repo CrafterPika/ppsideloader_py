@@ -29,7 +29,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build
       run: |
-        pyinstaller --onefile -i icon.icon ppsideloader_py.py
+        pyinstaller --onefile --noconsole -i icon.icon ppsideloader_py.py
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:

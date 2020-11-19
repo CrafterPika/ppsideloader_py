@@ -14,18 +14,21 @@ import os
 import glob
 import plistlib
 import threading
+import time
 
 #Commands
 def select_ipa():
     global ipa_file
     ipa_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
+    select_ipa1.config(text="Selected iPA", state="disabled")
 
 def select_tweak():
     global tweak_file
     tweak_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('Dynamic Library Files', '*.dylib')])
+    select_tweak1.config(text="Selected Tweak", state="disabled")
 
 def DO_IT():
-    DO_IT1.config(text="1/3 Extracting")
+    DO_IT1.config(text="1/4 Extracting", state='disabled')
     os.rename(ipa_file, f"{os.getcwd()}/ipa.zip")
     os.mkdir("app")
     with zipfile.ZipFile(f"{os.getcwd()}/ipa.zip", 'r') as zip_ref:
@@ -38,7 +41,7 @@ def DO_IT():
         print(path)
     os.chdir(orig)
 
-    DO_IT1.config(text="2/3 Modifying")
+    DO_IT1.config(text="2/4 Modifying", state='disabled')
     with open(f"{path}/Info.plist", 'rb') as fp:
         pl = plistlib.load(fp)
     data1 = pl["CFBundleExecutable"]
@@ -63,14 +66,18 @@ def DO_IT():
 
     os.remove(f"{path}/{data1}")
     shutil.move(f"{path}/output_exec", f"{path}/{data1}")
-
     shutil.move(f"{tweak_file}", f"{path}/libloader")
-    DO_IT1.config(text="3/3 Compressing")
+    time.sleep(5)
 
+    DO_IT1.config(text="3/4 Compressing", state='disabled')
     shutil.make_archive(f"{data1}", "zip", "app")
     shutil.rmtree("app")
     os.rename(f"{data1}.zip", f"{data1}.ipa")
-    DO_IT1.config(text="Done!")
+    DO_IT1.config(text="4/4 Done!", state='enabled')
+    select_ipa1.config(text="Select iPA", state="enabled")
+    select_tweak1.config(text="Select Tweak", state="enabled")
+    time.sleep(5)
+    DO_IT1.config(text="Start!", state='enabled')
 
 def t1():
     thread1 = threading.Thread(target=DO_IT)
@@ -80,6 +87,11 @@ main = Tk()
 main.title("ppsideloader")
 main.geometry("400x275")
 main.iconbitmap('icon.ico')
+
+#global
+global DO_IT1
+global select_ipa1
+global select_tweak1
 
 title = Label(main, text="PPSideloader")
 title.pack()
@@ -95,15 +107,14 @@ empty1 = Label(main, text="")
 empty1.pack()
 Step2 = Label(main, text="Step 2:")
 Step2.pack()
-select_ipa1 = ttk.Button(main, text="Select Tweak", command=select_tweak)
-select_ipa1.pack()
+select_tweak1 = ttk.Button(main, text="Select Tweak", command=select_tweak)
+select_tweak1.pack()
 
 empty2 = Label(main, text="")
 empty2.pack()
 Step3 = Label(main, text="Step 3:")
 Step3.pack()
-global DO_IT1
-DO_IT1 = ttk.Button(main, text="Do It!", command=t1)
+DO_IT1 = ttk.Button(main, text="Start!", command=t1)
 DO_IT1.pack()
 
 empty3 = Label(main, text="")
