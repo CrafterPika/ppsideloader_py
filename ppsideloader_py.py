@@ -20,12 +20,10 @@ import time
 def select_ipa():
     global ipa_file
     ipa_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
-    select_ipa1.config(text="Selected iPA", state="disabled")
 
 def select_tweak():
     global tweak_file
     tweak_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('Dynamic Library Files', '*.dylib')])
-    select_tweak1.config(text="Selected Tweak", state="disabled")
 
 def DO_IT():
     DO_IT1.config(text="1/4 Extracting", state='disabled')
@@ -74,8 +72,6 @@ def DO_IT():
     shutil.rmtree("app")
     os.rename(f"{data1}.zip", f"{data1}.ipa")
     DO_IT1.config(text="4/4 Done!", state='enabled')
-    select_ipa1.config(text="Select iPA", state="enabled")
-    select_tweak1.config(text="Select Tweak", state="enabled")
     time.sleep(5)
     DO_IT1.config(text="Start!", state='enabled')
 
