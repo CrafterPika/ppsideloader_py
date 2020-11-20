@@ -20,12 +20,10 @@ import time
 def select_ipa():
     global ipa_file
     ipa_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
-    select_ipa1.config(text="Selected iPA", state="disabled")
 
 def select_tweak():
     global tweak_file
     tweak_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('Dynamic Library Files', '*.dylib')])
-    select_tweak1.config(text="Selected Tweak", state="disabled")
 
 def DO_IT():
     DO_IT1.config(text="1/4 Extracting", state='disabled')
@@ -67,6 +65,17 @@ def DO_IT():
     os.remove(f"{path}/{data1}")
     shutil.move(f"{path}/output_exec", f"{path}/{data1}")
     shutil.move(f"{tweak_file}", f"{path}/libloader")
+
+    if(var1.get()==1):
+        shutil.copy(f"./assets/addons/dlgmemor.dylib", f"{path}/libloader")
+    else:
+        pass
+
+    if(var2.get()==1):
+        shutil.copy(f"./assets/addons/FLEX_Jailed.dylib", f"{path}/libloader")
+    else:
+        pass
+
     time.sleep(5)
 
     DO_IT1.config(text="3/4 Compressing", state='disabled')
@@ -74,8 +83,6 @@ def DO_IT():
     shutil.rmtree("app")
     os.rename(f"{data1}.zip", f"{data1}.ipa")
     DO_IT1.config(text="4/4 Done!", state='enabled')
-    select_ipa1.config(text="Select iPA", state="enabled")
-    select_tweak1.config(text="Select Tweak", state="enabled")
     time.sleep(5)
     DO_IT1.config(text="Start!", state='enabled')
 
@@ -85,7 +92,7 @@ def t1():
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("400x275")
+main.geometry("400x325")
 main.iconbitmap('icon.ico')
 
 #global
@@ -95,6 +102,18 @@ global select_tweak1
 
 title = Label(main, text="PPSideloader")
 title.pack()
+
+#frame
+addons_frame = ttk.LabelFrame(main, text="Addons")
+addons_frame.pack()
+
+#addons
+var1 = tkinter.IntVar()
+dlgmemor = ttk.Checkbutton(addons_frame, text="Add DLGMemor Injected.          ", variable=var1, onvalue=1, offvalue=0)
+dlgmemor.pack()
+var2 = tkinter.IntVar()
+FLEX = ttk.Checkbutton(addons_frame, text="Add FLEX.                                     ", variable=var2, onvalue=1, offvalue=0)
+FLEX.pack()
 
 empty = Label(main, text="")
 empty.pack()
