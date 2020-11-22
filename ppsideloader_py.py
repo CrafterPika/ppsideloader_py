@@ -55,8 +55,11 @@ def DO_IT():
         os.mkdir(f"{path}/Frameworks")
     except:
         pass
-    with zipfile.ZipFile(f"{os.getcwd()}/assets/CydiaSubstrate.zip", 'r') as zip_ref:
-        zip_ref.extractall(f"{path}/Frameworks/")
+    if(var4.get()==1):
+        shutil.copy(f"{os.getcwd()}/assets/libsubstrate.dylib", f"{path}/Frameworks/libsubstrate.dylib")
+    else:
+        with zipfile.ZipFile(f"{os.getcwd()}/assets/CydiaSubstrate.zip", 'r') as zip_ref:
+            zip_ref.extractall(f"{path}/Frameworks/")
 
     fin = open(f"{path}/{data1}", "rb")
     fout = open(f"{path}/output_exec", "wb")
@@ -131,6 +134,9 @@ FLEX.pack()
 var3 = tkinter.IntVar()
 libloader = ttk.Checkbutton(settings_frame, text="Don't use libloader.                    ", variable=var3, onvalue=1, offvalue=0)
 libloader.pack()
+var4 = tkinter.IntVar()
+libsubstrate = ttk.Checkbutton(settings_frame, text="Use libsubstrate.                         ", variable=var4, onvalue=1, offvalue=0)
+libsubstrate.pack()
 
 empty = Label(main, text="")
 empty.pack()
