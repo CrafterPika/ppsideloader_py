@@ -45,8 +45,12 @@ def DO_IT():
     data1 = pl["CFBundleExecutable"]
     print(f"{path}/{data1}")
 
-    shutil.copy(f"{os.getcwd()}/assets/libloader.dylib", f"{path}/Sys.dylib")
-    os.mkdir(f"{path}/libloader")
+    if(var3.get()==1):
+        shutil.move(f"{tweak_file}", f"{path}/Twk.dylib")
+    else:
+        shutil.copy(f"{os.getcwd()}/assets/libloader.dylib", f"{path}/Sys.dylib")
+        os.mkdir(f"{path}/libloader")
+
     try:
         os.mkdir(f"{path}/Frameworks")
     except:
@@ -58,13 +62,19 @@ def DO_IT():
     fout = open(f"{path}/output_exec", "wb")
 
     data = fin.read()
-    fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
+    if(var3.get()==1):
+        fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6c\x65\x5f\x70\x61\x74\x68\x2f\x54\x77\x6b\x2e\x64\x79\x6c\x69\x62"))
+    else:
+        fout.write(data.replace(b"\x2F\x75\x73\x72\x2F\x6C\x69\x62\x2F\x6C\x69\x62\x53\x79\x73\x74\x65\x6D\x2E\x42\x2E\x64\x79\x6C\x69\x62", b"\x40\x65\x78\x65\x63\x75\x74\x61\x62\x6C\x65\x5F\x70\x61\x74\x68\x2F\x53\x79\x73\x2E\x64\x79\x6C\x69\x62"))
     fin.close()
     fout.close()
 
     os.remove(f"{path}/{data1}")
     shutil.move(f"{path}/output_exec", f"{path}/{data1}")
-    shutil.move(f"{tweak_file}", f"{path}/libloader")
+    if(var3.get()==1):
+        pass
+    else:
+        shutil.move(f"{tweak_file}", f"{path}/libloader")
 
     if(var1.get()==1):
         shutil.copy(f"./assets/addons/dlgmemor.dylib", f"{path}/libloader")
@@ -92,7 +102,7 @@ def t1():
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("400x325")
+main.geometry("400x350")
 main.iconbitmap('icon.ico')
 
 #global
@@ -104,6 +114,8 @@ title = Label(main, text="PPSideloader")
 title.pack()
 
 #frame
+settings_frame = ttk.LabelFrame(main, text="Settings")
+settings_frame.pack()
 addons_frame = ttk.LabelFrame(main, text="Addons")
 addons_frame.pack()
 
@@ -114,6 +126,11 @@ dlgmemor.pack()
 var2 = tkinter.IntVar()
 FLEX = ttk.Checkbutton(addons_frame, text="Add FLEX.                                     ", variable=var2, onvalue=1, offvalue=0)
 FLEX.pack()
+
+#settings
+var3 = tkinter.IntVar()
+libloader = ttk.Checkbutton(settings_frame, text="Don't use libloader.                    ", variable=var3, onvalue=1, offvalue=0)
+libloader.pack()
 
 empty = Label(main, text="")
 empty.pack()
