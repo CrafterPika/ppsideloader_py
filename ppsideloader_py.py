@@ -105,7 +105,7 @@ def t1():
 
 main = Tk()
 main.title("ppsideloader")
-main.geometry("400x350")
+main.geometry("400x375")
 main.iconbitmap('icon.ico')
 
 #global
