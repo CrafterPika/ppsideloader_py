@@ -25,13 +25,13 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip install pyinstaller
+        pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build
       run: |
-        pyinstaller --onefile --noconsole -i icon.ico ppsideloader_py.py
+        make.py build
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
         name: output_windows
-        path: dist
+        path: build
