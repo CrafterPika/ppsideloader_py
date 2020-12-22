@@ -29,7 +29,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build
       run: |
-        make.py build
+        py -3 make.py build
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
