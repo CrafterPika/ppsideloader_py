@@ -1,2 +1,1 @@
 requests
-cx_Freeze
