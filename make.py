@@ -20,7 +20,7 @@ build_options = {
     "build_exe": {
         'packages': required_packages,
         'excludes': excluded_packages,
-        'include_files': ['icon.ico'],
+        'include_files': ['icon.ico', 'zsign.exe'],
     },
     'bdist_msi': {
         'upgrade_code': "{f3a5eb20-7045-4937-aad2-61be50141b85}",
@@ -32,7 +32,7 @@ build_options = {
 }
 
 setup(  name = "PPSideloaderPy",
-        version = "2.0",
+        version = "2.1",
         description = "Tweak apps easily",
         options = build_options,
         executables = executables_settings

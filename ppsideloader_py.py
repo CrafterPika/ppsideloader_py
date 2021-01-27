@@ -1,5 +1,5 @@
 #tkinter
-from tkinter import ttk, Button, Label, Entry, Tk, Menu, filedialog, messagebox
+from tkinter import ttk, Button, Label, Entry, Tk, Menu, filedialog, messagebox, OptionMenu
 from tkinter import *
 import tkinter
 from tkinter.ttk import *
@@ -15,8 +15,22 @@ import glob
 import plistlib
 import threading
 import time
+import requests
+import random
+import json
+import shlex
+import subprocess
+
+#Hotel Trivago
+abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z"]
+cap_abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 #Commands
+def source_code():
+	url = 'https://github.com/CrafterPika/ppsideloader_py'
+	webbrowser.open_new(url)
+
 def select_ipa():
     global ipa_file
     ipa_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
@@ -103,9 +117,76 @@ def t1():
     thread1 = threading.Thread(target=DO_IT)
     thread1.start()
 
+def sign_app():
+    # init
+    certAPI1 = requests.get("https://api.crafterpika.ml/v1/cert.php")
+    certAPI = certAPI1.json()
+    certDB1 = requests.get("https://api.crafterpika.ml/public_certs/cert.json")
+    certDB = certDB1.json()
+
+    #Functions
+    def zsign():
+        random1 = random.choice(abc)
+        random2 = random.choice(number)
+        random3 = random.choice(abc)
+        random4 = random.choice(number)
+        random5 = random.choice(cap_abc)
+
+        random6 = random.choice(abc)
+        random7 = random.choice(number)
+        random8 = random.choice(abc)
+        random9 = random.choice(number)
+        random10 = random.choice(cap_abc)
+        bundle_id = f"com.{random1}{random2}{random3}{random4}{random5}.{random6}{random7}{random8}{random9}{random10}.{clicked.get()}.crafterpika"
+
+        r = requests.get(f"{certDB[f'{clicked.get()}']['p12']}")
+        with open(f'{os.getcwd()}/{clicked.get()}.p12', 'wb') as f:
+            f.write(r.content)
+
+        r = requests.get(f"{certDB[f'{clicked.get()}']['mobileprovision']}")
+        with open(f'{os.getcwd()}/{clicked.get()}.mobileprovision', 'wb') as f:
+            f.write(r.content)
+
+        print(clicked.get())
+        subprocess.run(shlex.split(f"zsign -k '{clicked.get()}.p12' -p {certDB[f'{clicked.get()}']['password']} -m '{clicked.get()}.mobileprovision' -b {bundle_id} -o '{os.getcwd()}/ipa_signed.ipa' -z 9 '{ipa_file1}'"))
+        pass
+
+    def sipa():
+        global ipa_file1
+        ipa_file1 = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
+        print(ipa_file1)
+
+    signer = Tk()
+    signer.title("Sign App")
+    signer.iconbitmap('icon.ico')
+    signer.geometry("370x150")
+
+    #Title
+    title = Label(signer, text="Sign App")
+    title.pack()
+    empty = Label(signer, text="")
+    empty.pack()
+
+    #Dropdown Menu for certs and ipa-select button
+    bruh = Label(signer, text="Certificate & iPA")
+    bruh.pack()
+    clicked = StringVar()
+    dropdown = ttk.OptionMenu(signer, clicked, *certAPI)
+    dropdown.pack()
+    select_ipa1 = ttk.Button(signer, text="Select iPA", command=sipa)
+    select_ipa1.pack()
+
+    #Sign :evil:
+    empty = Label(signer, text="")
+    empty.pack()
+    sign = ttk.Button(signer, text="Sign iPA", command=zsign)
+    sign.pack()
+
+    signer.mainloop()
+
 main = Tk()
 main.title("ppsideloader")
-main.geometry("400x375")
+main.geometry("400x390")
 main.iconbitmap('icon.ico')
 
 #global
@@ -164,5 +245,12 @@ empty3.pack()
 copyright = Label(main, text="(c) 2020 CrafterPika")
 copyright.pack()
 
+#ToolBar
+toolmenu=Menu()
+options=Menu()
+toolmenu.add_cascade(label='Options',menu=options)
+options.add_command(label='Sign', command=sign_app)
+toolmenu.add_command(label='Source Code', command=source_code)
+main.config(menu=toolmenu)
 
 main.mainloop()
