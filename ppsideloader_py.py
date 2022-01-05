@@ -20,6 +20,8 @@ import random
 import json
 import shlex
 import subprocess
+from pathlib import Path
+
 
 #Hotel Trivago
 abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z"]
@@ -27,8 +29,7 @@ cap_abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
 number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 package_dir = os.path.dirname(__file__)
-os.chdir(package_dir)
-pathdir = os.chdir("../../../")
+pathdir = str(Path.home() / "Downloads")
 
 #Commands
 def source_code():
