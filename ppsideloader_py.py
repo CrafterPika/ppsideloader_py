@@ -21,6 +21,7 @@ import json
 import shlex
 import subprocess
 from pathlib import Path
+import sys
 
 
 #Hotel Trivago
@@ -28,7 +29,8 @@ abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"
 cap_abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
 number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-package_dir = os.path.dirname(__file__)
+package_dir = os.path.dirname(sys.executable)
+print(package_dir)
 pathdir = str(Path.home() / "Downloads")
 
 #Commands
