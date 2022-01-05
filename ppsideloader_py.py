@@ -27,6 +27,8 @@ cap_abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
 number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 package_dir = os.path.dirname(__file__)
+os.chdir(package_dir)
+pathdir = os.chdir("../../../")
 
 #Commands
 def source_code():
@@ -35,21 +37,21 @@ def source_code():
 
 def select_ipa():
     global ipa_file
-    ipa_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
+    ipa_file = filedialog.askopenfilename(initialdir=f"{pathdir}", filetypes=[('iOS Application Files', '*.ipa')])
 
 def select_tweak():
     global tweak_file
-    tweak_file = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('Dynamic Library Files', '*.dylib')])
+    tweak_file = filedialog.askopenfilename(initialdir=f"{pathdir}", filetypes=[('Dynamic Library Files', '*.dylib')])
 
 def DO_IT():
     DO_IT1.config(text="1/4 Extracting", state='disabled')
-    os.rename(ipa_file, f"{os.getcwd()}/ipa.zip")
+    os.rename(ipa_file, f"{pathdir}/ipa.zip")
     os.mkdir("app")
-    with zipfile.ZipFile(f"{os.getcwd()}/ipa.zip", 'r') as zip_ref:
-        zip_ref.extractall(f"{os.getcwd()}/app/")
+    with zipfile.ZipFile(f"{pathdir}/ipa.zip", 'r') as zip_ref:
+        zip_ref.extractall(f"{pathdir}/app/")
     os.remove("ipa.zip")
-    orig = os.getcwd()
-    os.chdir(f"{os.getcwd()}/app/Payload/")
+    orig = pathdir
+    os.chdir(f"{pathdir}/app/Payload/")
     for file in glob.glob("*.app"):
         path = os.path.join(f"{orig}/app/Payload", file)
         print(path)
@@ -155,7 +157,7 @@ def sign_app():
 
     def sipa():
         global ipa_file1
-        ipa_file1 = filedialog.askopenfilename(initialdir=f"{os.getcwd()}", filetypes=[('iOS Application Files', '*.ipa')])
+        ipa_file1 = filedialog.askopenfilename(initialdir=f"{pathdir}", filetypes=[('iOS Application Files', '*.ipa')])
         print(ipa_file1)
 
     signer = Tk()
