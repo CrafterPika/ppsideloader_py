@@ -26,6 +26,8 @@ abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"
 cap_abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
 number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+package_dir = os.path.dirname(__file__)
+
 #Commands
 def source_code():
 	url = 'https://github.com/CrafterPika/ppsideloader_py'
@@ -62,7 +64,7 @@ def DO_IT():
     if(var3.get()==1):
         shutil.move(f"{tweak_file}", f"{path}/Twk.dylib")
     else:
-        shutil.copy(f"{os.getcwd()}/assets/libloader.dylib", f"{path}/Sys.dylib")
+        shutil.copy(f"{package_dir}/assets/libloader.dylib", f"{path}/Sys.dylib")
         os.mkdir(f"{path}/libloader")
 
     try:
@@ -70,9 +72,9 @@ def DO_IT():
     except:
         pass
     if(var4.get()==1):
-        shutil.copy(f"{os.getcwd()}/assets/libsubstrate.dylib", f"{path}/Frameworks/libsubstrate.dylib")
+        shutil.copy(f"{package_dir}/assets/libsubstrate.dylib", f"{path}/Frameworks/libsubstrate.dylib")
     else:
-        with zipfile.ZipFile(f"{os.getcwd()}/assets/CydiaSubstrate.zip", 'r') as zip_ref:
+        with zipfile.ZipFile(f"{package_dir}/assets/CydiaSubstrate.zip", 'r') as zip_ref:
             zip_ref.extractall(f"{path}/Frameworks/")
 
     fin = open(f"{path}/{data1}", "rb")
@@ -94,12 +96,12 @@ def DO_IT():
         shutil.move(f"{tweak_file}", f"{path}/libloader")
 
     if(var1.get()==1):
-        shutil.copy(f"./assets/addons/dlgmemor.dylib", f"{path}/libloader")
+        shutil.copy(f"{package_dir}/assets/addons/dlgmemor.dylib", f"{path}/libloader")
     else:
         pass
 
     if(var2.get()==1):
-        shutil.copy(f"./assets/addons/FLEX_Jailed.dylib", f"{path}/libloader")
+        shutil.copy(f"{package_dir}/assets/addons/FLEX_Jailed.dylib", f"{path}/libloader")
     else:
         pass
 
