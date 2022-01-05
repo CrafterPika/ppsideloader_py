@@ -47,7 +47,7 @@ def select_tweak():
 def DO_IT():
     DO_IT1.config(text="1/4 Extracting", state='disabled')
     os.rename(ipa_file, f"{pathdir}/ipa.zip")
-    os.mkdir("app")
+    os.mkdir(f"{pathdir}/app")
     with zipfile.ZipFile(f"{pathdir}/ipa.zip", 'r') as zip_ref:
         zip_ref.extractall(f"{pathdir}/app/")
     os.remove("ipa.zip")
