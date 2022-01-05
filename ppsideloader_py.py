@@ -50,7 +50,7 @@ def DO_IT():
     os.mkdir(f"{pathdir}/app")
     with zipfile.ZipFile(f"{pathdir}/ipa.zip", 'r') as zip_ref:
         zip_ref.extractall(f"{pathdir}/app/")
-    os.remove("ipa.zip")
+    os.remove(f"{pathdir}/ipa.zip")
     orig = pathdir
     os.chdir(f"{pathdir}/app/Payload/")
     for file in glob.glob("*.app"):
