@@ -27,9 +27,13 @@ jobs:
       run: |
         pip install pyinstaller
         pip install -r requirements.txt 
-    - name: Build
+    - name: Build && Packaging
       run: |
         pyinstaller --onefile -i icon.icon ppsideloader_py.py
+        mv ./dist/ppsideloader_py ./ppsideloader.app/Contents/MacOS/ppsideloader_py
+        mv ./assets ./ppsideloader.app/Contents/MacOS/assets
+        chmod -R +x ./ppsideloader.app
+        mv ./ppsideloader.app ./dist/ppsideloader.app
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:

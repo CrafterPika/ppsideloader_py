@@ -27,9 +27,12 @@ jobs:
       run: |
         pip install pyinstaller
         pip install -r requirements.txt
-    - name: Build
+    - name: Build && Packaging
       run: |
         pyinstaller --onefile -i icon.ico ppsideloader_py.py
+        mv ./assets ./dist/assets
+        mv ./icon.ico ./dist/icon.ico
+        mv ./zsign.exe ./dist/zsign.exe
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
